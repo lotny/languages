@@ -1,9 +1,84 @@
+<!DOCTYPE html>
 <html>
-<head></head>
-<body>
-This is a test
+<!--manifest="languages.appcache"-->
+<head>
+<meta charset="UTF-8">
+<meta name=viewport content='width=700'>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1"><!--this setting actually works-->
+<script src="jquery-3.1.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="default.css">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" sizes="192x192" href="icon.png">
+<title>languages</title>
+<style>
+@media only screen and (max-width: 700px){
+#table{width:100% ;}
+table {table-layout:fixed}
+table {width:100%}
+table td {word-wrap:break-word;}
+#messages{width: 300px;}
+.btn_language{width: 76px;height: 76px;}
+#copy{width:100% ;}
+</style>
+</head>
+<div id="frame">
+<div id="top" align="center">
+<div id="modes">
+<div id="mode_sql" >
+<p><button class="btn_mode" title="lets you pick languages and edit tables" id="btn_edit" onclick="switchModes('edit')">edit mode</button><button class="btn_mode" onclick="switchModes('compare')">compare mode</button></p>
+<textarea id="userquery" cols="40" rows="10"  placeholder="Type query here">Select word.id, english.text as 'english', german.text as 'german' from word right join german on german.id = word.id right join english on english.id = word.id</textarea>
+<div id="mode_sql_btns">
+<button id="btn_query" onclick="executeQuery()" >execute query</button><button id="btn_save_query" onclick="saveQuery()" >save query</button><button id="btn_load_query" onclick="loadQuery()" >load query</button>
+</div>
+</div>
+<div id="mode_edit">
+<p><button class="btn_mode" title="You cannot edit tables in SQL mode" id="btn_sql" onclick="switchModes('sql')">SQL mode</button><!--<button title="choose different languages" id="btn_reset" onclick="switchModes('reset')">change languages</button>--><button class="btn_mode" id="btn_m_compare" onclick="switchModes('compare')">compare mode</button><button class="btn_mode" id="btn_m_edit" onclick="switchModes('edit')">edit mode</button></p>
+<!-- I could allow reordering columns here.... -->
+<button id = "btn_en" class="btn_language" >English</button>
+<button id = "btn_de" class="btn_language" >German</button>
+<button class ="hidden" id = "btn_nl" class="btn_language" >Dutch</button>
+<button class ="hidden" id = "btn_se" class="btn_language" >Swedish</button>
+<button id = "btn_fr" class="btn_language" >French</button>
+<button id = "btn_es" class="btn_language" >Spanish</button>
+<button class ="hidden" id = "btn_it" class="btn_language" >Italian</button>
+<button id = "btn_la" class="btn_language" >Latin</button>
+<button id = "btn_pl" class="btn_language" >Polish</button>
+<button class ="hidden" id = "btn_cz" class="btn_language" >Czech</button>
+<button class ="hidden" id = "btn_hr" class="btn_language" >Croatian</button>
+<button id = "btn_ru" class="btn_language" >Russian</button>
+<button id = "btn_kr" class="btn_language" >Korean</button>
+</p>
+<button id="btn_auto" onclick="autoQuery('edit')" >show selected</button>
+
+<button id ="btn_compare" onclick="autoQuery('compare')">compare</button>
+</div><!--end of edit mode-->
+
+
+
+</div><!-- end of top div-->
+<div id="controls">
+<input type="text" id="filter" placeholder="..." value="type:noun" disabled></input>
+<button style="font-size: 12px;width:24px" id="btn_filter" onclick="filterInit()">&#128269;</button><button id="btn_change" >show changes</button><button id="btn_update" onclick="executeUpdate()">save changes</button><button id="btn_add" onclick="addRow()">add row</button>
+
+</div> <!-- end of control bar-->
+</div> <!-- end of top bar -->
+<div id="tableheader" align="center"></div>
+
+<div id="content" align="center"><p class="info">This web app lets you compare similar words from different languages. To start, use the above query, or go to the <b>compare mode</b>, choose languages and press <b>compare</b></p>
+<p class="error">Note that some features, like loading SQL queries or editing cells, are blocked</p>
+</div>
+
+
+</div> <!-- end of frame-->
+
+<div id="messages"></div>
+<script>
+
+
+</script>
+<script src="msgs.js"></script>
+<script src="update.js"></script>
+<script src="controls.js"></script>
 </body>
-
-
-
 </html>

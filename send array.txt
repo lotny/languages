@@ -1,0 +1,6 @@
+elements = [1, 2, 9, 15].join(',')
+$.post('/test.php', {elements: elements})
+
+
+$elements = $_POST['elements'];
+$elements = explode(',', $elements);

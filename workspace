@@ -1,0 +1,22 @@
+<NotepadPlus>
+    <Project name="languages">
+        <File name="index.html" />
+        <File name="load.php" />
+        <File name="load_.php" />
+        <File name="savequery.php" />
+        <File name="default.css" />
+        <File name="query.txt" />
+        <File name="mega query.txt" />
+        <File name="update.php" />
+        <File name="update.js" />
+        <File name="msgs.js" />
+        <File name="controls.js" />
+        <File name="parsing.js" />
+        <File name="addrow.php" />
+        <File name="passwords.txt" />
+        <Folder name="script">
+            <File name="scripts\update_.php" />
+        </Folder>
+        <File name="manifest.json" />
+    </Project>
+</NotepadPlus>

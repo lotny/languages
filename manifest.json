@@ -1,0 +1,13 @@
+{
+  "name": "Languages",
+  "description": "This app lets you compare languages",
+  "version": 0.1,
+  "manifest_version": 2,
+  "icons": 
+    {
+      "192": "icon.png"
+    },
+  "start_url": "index.html",
+  "display": "standalone",
+  "offline_enabled": true
+}

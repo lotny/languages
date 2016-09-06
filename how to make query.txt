@@ -1,0 +1,21 @@
+plan for keeping context of the tables:
+
+checkboxes
+
+X - words (id, comment, typeid) and so on
+select words.id, words.comment, words.typeid, words.level 
+
+
+
+from words
+
+x - english 
+,english.text as 'english' 
+
+
+left join English on words.id = english.id
+
+
+x - german
+
+

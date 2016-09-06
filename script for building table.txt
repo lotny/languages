@@ -1,0 +1,20 @@
+/*tablica zwrocona przez SQL (przez PHP)
+
+array 	{a,b,c,d,e,f,g,h,i,j};
+		 0,1,2,3,4,5,6,7,8,9
+
+	*/	 
+	//the first returned column should always be ID, this ID should be a hidden table
+	
+//what if I went all crazy and created an XML file based on the query...
+//and then transformed that XML....
+		 
+
+$("#contents").html("<table id='queryTable'></table>");
+For (x=0;x<tableRows.length;x++){
+	$('tbody').append("<tr></tr>"); //same mechanism as for adding tables
+	For (y=0;y<tableRows[x][y].length;y++){
+	$('tr').append("<td>{0}</td>") 	//get row index
+	}
+};
+console.log("table was create");
