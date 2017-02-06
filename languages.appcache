@@ -1,0 +1,21 @@
+CACHE MANIFEST
+# Version 1
+
+CACHE:
+
+#I could add the file with the query I guess...
+
+FALLBACK:
+# This will enable imagename4.png to be as a replacement for 
+# all resources under the images dir when there is no network connectivity.
+
+
+NETWORK:
+# This will prevent other network resources from being accessed.
+
+#index.html
+#default.css
+#jquery-3.1.0.min.js
+#controls.js
+#msgs.js
+#update.js
