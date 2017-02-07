@@ -505,7 +505,7 @@ var editedCell = $(this);
 if (editing == false){
 	
 	//display details window
-	$("#details").removeClass('hidden');
+	$("#details").removeAttr('class');
 	var word = editedCell.html();
 	var y = editedCell.parent("tr").index();
 	var languageId = editedCell.index();

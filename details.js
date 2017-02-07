@@ -12,6 +12,6 @@ function getDetails(Id, word, languageId){
 //};
 
 	
-var details =  word+ " (" + context[languageId][2] + ")" + " [" + Id + "]<br><br>More details will be displayed here...<br><br>"  ;
+var details =  word+ " (" + context[languageId][2] + ")" + " [" + Id + "]<br><br>"  ;
 $("#details").html(details);
 }
