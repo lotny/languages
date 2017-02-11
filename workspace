@@ -17,5 +17,6 @@
         <File name="changelog.html" />
         <File name="search_.php" />
         <File name="details.js" />
+        <File name="ui.js" />
     </Project>
 </NotepadPlus>

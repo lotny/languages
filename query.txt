@@ -1,134 +1,36 @@
-﻿Saved query: select * from words where comment != ""
-Saved at: 2016-08-15 13:45:24
-
-Saved query: SELECT WORDS.Id,
-WORDS.Comment,
-type.name as "Type",
-WORDS.Level,
-ENGLISH.TEXT as "English",
-GERMAN.TEXT as "German",
-FRENCH.TEXT as "French",
-POLISH.TEXT as "Polish",
-KOREAN.TEXT as "Korean",
-SPANISH.TEXT as "Spanish",
-ITALIAN.TEXT as "Italian",
-LATIN.TEXT as "Latin",
-RUSSIAN.TEXT as "Russian",
-CROATIAN.TEXT as "Croatian",
-CZECH.TEXT as "Czech"
+﻿SELECT word.id,
+word.Comment,
+type.name as "type",
+word.Level,
+english.TEXT as "english",
+german.TEXT as "german",
+french.TEXT as "french",
+polish.TEXT as "polish",
+korean.TEXT as "korean",
+spanish.TEXT as "spanish",
+italian.TEXT as "italian",
+latin.TEXT as "latin",
+russian.TEXT as "russian",
+croatian.TEXT as "croatian",
+czech.TEXT as "czech"
 
 
-FROM WORDS 
+FROM word
 
-left JOIN ENGLISH ON ENGLISH.ID = WORDS.ID 
-left JOIN GERMAN ON GERMAN.ID = WORDS.ID 
-left JOIN POLISH ON POLISH.ID = WORDS.ID 
-left JOIN FRENCH ON FRENCH.ID = WORDS.ID 
-left JOIN KOREAN ON KOREAN.ID = WORDS.ID 
-left JOIN ITALIAN on ITALIAN.ID = WORDS.ID
-left JOIN SPANISH on SPANISH.ID = WORDS.ID
-left JOIN LATIN on LATIN.ID = WORDS.ID
-left JOIN RUSSIAN on RUSSIAN.ID = WORDS.ID
-left JOIN CROATIAN on CROATIAN.ID = WORDS.ID
-left JOIN CZECH on CZECH.ID = WORDS.ID
+left JOIN english ON english.id = word.id 
+left JOIN german ON german.id = word.id 
+left JOIN polish ON polish.id = word.id 
+left JOIN french ON french.id = word.id 
+left JOIN korean ON korean.id = word.id 
+left JOIN italian on italian.id = word.id
+left JOIN spanish on spanish.id = word.id
+left JOIN latin on latin.id = word.id
+left JOIN russian on russian.id = word.id
+left JOIN croatian on croatian.id = word.id
+left JOIN czech on czech.id = word.id
 
-INNER JOIN TYPE ON words.typeid = type.id
+INNER JOIN type ON word.typeid = type.id 
 
 
 
-ORDER BY `ID` ASC
-Saved at: 2016-08-16 10:34:02
-
-Saved query: 
-Saved at: 2016-08-16 20:47:55
-
-Saved query: select * from polish where text = 'kanał'
-Saved at: 2016-08-16 21:21:06
-
-Saved query: select words.id,words.typeid,english.text as 'english',german.text as 'german' from words left join german on german.id = words.id left join english on english.id = words.id where german.text != "n/a" and english.text != "n/a"
-Saved at: 2016-08-17 19:08:09
-Saved query: 
-Saved at: 2016-08-17 21:04:55
-
-
-Saved query: Select W.Id,E.text as 'English',W.TypeId as 'Type', W.Comment from WORDS W left join ENGLISH E on W.id=E.id
-Saved at: 2016-08-20 21:55:59
-
-Saved query: Select * from english
-Saved at: 2016-08-21 21:31:58
-
-Saved query: SELECT WORDS.Id as 'Id', WORDS.Typeid as 'Type', WORDS.Comment as 'Comment', ENGLISH.Text as 'English', GERMAN.Text as 'German', French.Text as 'French' FROM WORDS LEFT JOIN ENGLISH ON ENGLISH.id = words.id  LEFT JOIN GERMAN ON GERMAN.id = words.id  LEFT JOIN French ON French.id = words.id ORDER BY 'Id' asc
-Saved at: 2016-08-21 23:35:25
-
-Saved query: Select * from english
-Saved at: 2016-08-21 23:36:01
-
-Saved query: SELECT WORDS.Id as 'Id', WORDS.Typeid as 'Type', WORDS.Comment as 'Comment', ENGLISH.Text as 'English', GERMAN.Text as 'German' FROM WORDS LEFT JOIN ENGLISH ON ENGLISH.id = words.id  LEFT JOIN GERMAN ON GERMAN.id = words.id ORDER BY 'Id' asc
-Saved at: 2016-08-22 22:23:16
-
-Saved query: Select * from english
-Saved at: 2016-08-22 22:23:45
-
-Saved query: 
-Saved at: 2016-08-22 22:28:42
-
-Saved query: 
-Saved at: 2016-08-22 22:28:43
-
-Saved query: 
-Saved at: 2016-08-22 22:28:45
-
-Saved query: Select * from english
-Saved at: 2016-08-22 22:30:00
-2016-08-22 22:31:31 - Select * from english
-
-2016-08-22 22:31:42 - Select * from english
-
-2016-08-22 22:31:42 - Select * from english
-
-2016-08-22 22:31:42 - Select * from english
-
-2016-08-22 22:31:42 - Select * from english
-
-2016-08-22 22:31:42 - Select * from english
-
-2016-08-22 22:32:08 - Select * from english
-
-
-
-2016-08-22 22:32:08 - Select * from english
-
-
-
-2016-08-22 22:32:08 - Select * from english
-
-
-
-2016-08-22 22:32:08 - Select * from english
-
-
-
-2016-08-22 22:33:11 - Select * from english
-
-
-2016-08-22 22:33:11 - Select * from english
-
-
-2016-08-22 22:33:11 - Select * from english
-
-
-2016-08-22 22:33:12 - Select * from english
-
-
-2016-08-22 22:33:12 - Select * from english
-
-
-2016-08-22 22:33:12 - Select * from english
-
-
-2016-08-29 10:23:00 - SELECT WORDS.Id as 'Id', WORDS.Typeid as 'Type', WORDS.Comment as 'Comment', ENGLISH.Text AS 'English', GERMAN.Text AS 'German', KOREAN.Text AS 'Korean' FROM WORDS RIGHT JOIN ENGLISH ON ENGLISH.Id = WORDS.Id RIGHT JOIN GERMAN ON GERMAN.Id = WORDS.Id RIGHT JOIN KOREAN ON KOREAN.Id = WORDS.Id WHERE ENGLISH.Text NOT LIKE 'n/a%' AND GERMAN.Text NOT LIKE 'n/a%' AND KOREAN.Text NOT LIKE 'n/a%' ORDER BY 'Id' ASC
-
-
-2016-08-29 19:52:14 - SELECT WORDS.Id as 'Id', WORDS.Typeid as 'Type', WORDS.Comment as 'Comment', ENGLISH.Text AS 'English', GERMAN.Text AS 'German', KOREAN.Text AS 'Korean' FROM WORDS RIGHT JOIN ENGLISH ON ENGLISH.Id = WORDS.Id RIGHT JOIN GERMAN ON GERMAN.Id = WORDS.Id RIGHT JOIN KOREAN ON KOREAN.Id = WORDS.Id WHERE ENGLISH.Text NOT LIKE 'n/a%' AND GERMAN.Text NOT LIKE 'n/a%' AND KOREAN.Text NOT LIKE 'n/a%' ORDER BY 'Id' ASC
-
-
+ORDER BY `id` ASC

@@ -4,12 +4,8 @@
 //compare non null - show only rows that have cognates
 //compare where non null > null (for example compare 3 languages and show rows which have at least 2 cognates.
 
-
-
-
-
 //Tehnical - I need to create stored procedures with variables for ID and text of cells 
-
+//and views, possibly?
 
 
 //how to make less strict compare:
@@ -20,6 +16,9 @@
 //display these rows
 
 
+
+//how to mark relationships like:
+//we have industrialny as adj in polish, from industrial, but we don't have 'industry'
 
 //init function?
 
@@ -191,6 +190,10 @@ if (userquery != "" ){
 	}
 }
 //create query based on the selected languages:
+
+//this should be handled on the server!
+//this can be replaced with views!!!!!!!!
+
 function autoQuery(mode){
 context.length = 1; //test!!!!!!!!!
 var autoQuery = "";
@@ -526,7 +529,7 @@ if (editing == false){
 			var inputField = "<input type='text' class='input' value=''/>";
 			editedCell.html(inputField);
 			$(".input").focus(); //focus on the input
-			$(".input").height(parentHeight).width(parentWidth); 			
+			$(".input").height(parentHeight).width(parentWidth);
 			$(".input").val(OriginalContent); //set the value, the cursor moves to the end of the string
 			editedCell.val("");
 		}
@@ -625,4 +628,8 @@ console.log(e.result[0]);
 		$("#table > tbody").append(newRow);
 	}
 })
+}
+
+function log(message){
+	$.getJSON('savequery.php',  {'userquery': message});
 }

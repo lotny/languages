@@ -1,18 +1,3 @@
-
-
-
-
-
-//SET @p0 =  '1';
-
-//SET @p1 =  '1248';
-
-//CALL `UpdateType` (
-//@p0 , @p1
-//);
-
-
-
 var successRate = [0,0]
 
 function addRow(){
