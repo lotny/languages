@@ -68,6 +68,12 @@ top:10px;
 left:10px;
 z-index:100;
 }
+#editbox{
+width: 400px;
+position:fixed;
+top:10px;
+z-index:10;
+}
 
 #details{
 width: 400px;
@@ -115,6 +121,11 @@ padding:1px;
 font-size: 14px;
 }
 .input:focus{
+}
+
+.detType{
+color: gold;
+
 }
 
 .changed{
@@ -192,6 +203,7 @@ background-color: #C8CBD0;
 background-color:#C8CBD0;
 }
 .selected{
+color:#FFFFFF;
 background-color:#726C78;
 }
 .selected:hover{

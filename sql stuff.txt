@@ -1,0 +1,40 @@
+SELECT word.Id,
+word.Comment,
+type.name as "Type",
+word.Level,
+english.TEXT as "English",
+GERMAN.TEXT as "German",
+FRENCH.TEXT as "French",
+POLISH.TEXT as "Polish",
+KOREAN.TEXT as "Korean",
+SPANISH.TEXT as "Spanish",
+ITALIAN.TEXT as "Italian",
+LATIN.TEXT as "Latin",
+RUSSIAN.TEXT as "Russian",
+CROATIAN.TEXT as "Croatian",
+CZECH.TEXT as "Czech"
+
+
+FROM word 
+
+left JOIN english ON english.ID = word.ID 
+left JOIN german ON german.ID = word.ID 
+left JOIN polish ON polish.ID = word.ID 
+left JOIN french ON french.ID = word.ID 
+left JOIN KOREAN ON KOREAN.ID = word.ID 
+left JOIN ITALIAN on ITALIAN.ID = word.ID
+left JOIN SPANISH on SPANISH.ID = word.ID
+left JOIN LATIN on LATIN.ID = word.ID
+left JOIN RUSSIAN on RUSSIAN.ID = word.ID
+left JOIN CROATIAN on CROATIAN.ID = word.ID
+left JOIN CZECH on CZECH.ID = word.ID
+
+INNER JOIN TYPE ON word.typeid = type.id 
+
+
+
+ORDER BY `ID` ASC
+
+
+
+ALTER TABLE  `english` ADD  `Alt` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ;

@@ -18,5 +18,6 @@
         <File name="search_.php" />
         <File name="details.js" />
         <File name="ui.js" />
+        <File name="details.php" />
     </Project>
 </NotepadPlus>

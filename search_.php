@@ -13,6 +13,7 @@ $userquery = strtolower($userquery);
 //right join german on id=id
 //right join french on id=id
 //right join
+//union ....
 
 
 $conn = mysql_connect($servername,$username,$password) ;

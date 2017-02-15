@@ -64,11 +64,12 @@ else{console.log("disabled");
 }}
 */
 
-/*
-* @event lowerPaneClicked
-*/
+/**
+ * @event lowerPaneClicked
+ */
 $(document).on('click', 'table, #controls, #content', function(){
 $("#details").addClass('hidden');
+$("td.selected").removeClass('selected');
 changeHelp("table");
 if (focus != "table"){
 focus = "table";
@@ -80,9 +81,9 @@ $("#btn_compare").hide();
 
 }}); 
 
-/*
-* @event topPaneClicked
-*/
+/**
+ * @event topPaneClicked
+ */
 $(document).on('click', '#mode_search,#mode_edit', function(){
 
 if (focus != "top"){
@@ -104,9 +105,9 @@ break;
 }
 }}); 
 
-/*
-* Delays resizing
-*/
+/**
+ * Delays resizing
+ */
 $(window).bind('resize', function(e){
     window.resizeEvt;
     $(window).resize(function(){
@@ -114,12 +115,12 @@ $(window).bind('resize', function(e){
         window.resizeEvt = setTimeout(function(){adjustColumns()},300);
     });
 });
-/*
-* Fixes column width
-*/
+/**
+ * Fixes column width
+ */
 function adjustColumns(){
 var table_width = 0;
-$('#table thead').show(); //has to be shown to get proper size
+$('#table thead').show(); //has to be shown to get proper size does not work though
 $('#table th').each(function(e){
 table_width = Math.round($(this).width());
 $('#copy thead th')[e].width = table_width; //add a way of defining COL?
@@ -129,9 +130,9 @@ $('#table thead').height("0px");
 $('#table thead').hide();
 
 }
-/*
-* This function should be simplified
-*/ 
+/**
+ * This function should be simplified
+ */ 
 function switchModes(mode){
 current_mode=mode;
 switch(mode){
@@ -193,7 +194,9 @@ if (userquery != "" ){
 
 //this should be handled on the server!
 //this can be replaced with views!!!!!!!!
-
+/**
+ * @param mode 
+ */
 function autoQuery(mode){
 context.length = 1; //test!!!!!!!!!
 var autoQuery = "";
@@ -287,10 +290,10 @@ $("#btn_auto").hide();
 $("#btn_compare").hide();
 executeQuery(mode);
 }
-/*
-* Should work for every mode
-* should be broken apart into smaller functions
-*/
+/**
+ * Should work for every mode
+ * should be broken apart into smaller functions
+ */
 function executeQuery(mode){ 
 //var userquery = userquery; //this has to be changed!!!!!
 
@@ -346,7 +349,7 @@ request.onupgradeneeded = function(event) {
   
     var db = event.target.result;
     var objectStore = db.createObjectStore("word", { autoIncrement: false  });
-    objectStore.createIndex("id", "id", { unique: true });
+    objectStore.createIndex("Id", "Id", { unique: true });
 	for(var iDBrow in e.result){
     var newRecord = objectStore.add(e.result[iDBrow], e.result[iDBrow]["Id"]);
 	}
@@ -387,13 +390,14 @@ request.onupgradeneeded = function(event) {
 		}
 	} else { //handle errors here:
 		
-		$("#filter").prop("disabled",true);
+		//$("#filter").prop("disabled",true);
 		$("#btn_update").prop("disabled", true);
 		$("#btn_update").hide();
 		$("#btn_change").prop("disabled", true);
 		$("#btn_change").hide();
 		$("#btn_add").prop("disabled", true);
 		$("#btn_add").hide();
+		focus = "table";
 		messageCreate(e.result[1]);
 	}
 })
@@ -402,9 +406,7 @@ request.onupgradeneeded = function(event) {
 .fail(function(){
 		messageShow("connection error","error");
 	});
-
-;
-};
+;};
 
 //my script for filtering
 var filter = "";
@@ -463,9 +465,9 @@ for(var i=0; i<rowLength; i+=1){
 adjustColumns();
 }
 
-/*
-* Filters using column name
-*/
+/**
+ * Filters using column name
+ */
 function filterbyColumn(column,filter){
 console.log("column mode " + column + "|"+ filter);
 
@@ -499,14 +501,18 @@ adjustColumns();
 
 
 
-/*
+/**
  *
  * @event onCellClicked
  */
+ 
+//$(document).on('dblclick', '#table td', function(){
+//
+//}
 $(document).on('dblclick', '#table td', function() {
 var editedCell = $(this);
 if (editing == false){
-	
+	editedCell.addClass('selected');
 	//display details window
 	$("#details").removeAttr('class');
 	var word = editedCell.html();

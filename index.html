@@ -20,6 +20,7 @@ background-color:#5e5e5e; }
 table {width:100%; table-layout:fixed}
 table td {word-wrap:break-word;}
 #messages{position:fixed; width: 300px; top:auto !important; bottom: 10px !important;}
+#editing{position:fixed; background-color:white; top:auto !important; bottom: 20px !important; font-size: 20px;}
 .btn_language{width: 76px;height: 76px;}
 #copy{width:100% ;}
 #help_content{; float:left ;width: 90%;}
@@ -59,7 +60,7 @@ table td {word-wrap:break-word;}
 <button id = "btn_ru" class="btn_language" >Russian</button>
 <button id = "btn_kr" class="btn_language" >Korean</button>
 </p>
-<button class ="btn_mode_controls" id="btn_auto" onclick="autoQuery('edit')" >show selected</button>
+<button class ="btn_mode_controls" id="btn_auto" onclick="autoQuery('edit')" >edit</button>
 
 <button class ="btn_mode_controls" id ="btn_compare" onclick="autoQuery('compare')">compare</button>
 </div><!--end of edit mode-->
@@ -80,6 +81,7 @@ table td {word-wrap:break-word;}
 </div> <!-- end of frame-->
 
 <div id="messages"></div>
+<div id="editBox" class="hidden"></div>
 <div id="details" class="hidden"></div>
 <script></script>
 <script src="update.js"></script>
