@@ -40,8 +40,24 @@ $(".changed").each(function(e){ //I could use the E index to create multiple obj
 		var changedTable = context[x][0];
 		var changedColumn = context[x][1];
 		//replace with stored procedure:
+		var changedDetails = "";
+		//if n/a then Alt should be updated!
 		var changedId = document.getElementById("table").rows[y].cells[0].innerHTML;
+		if (changedValue.indexOf("(") > 0 && x > 2)
+		{
+			var col = "Details"
+			if (changedValue.indexOf("n/a" > 0)){
+				col = "Alt"
+			}
+			//update text and detail separately if you find ()
+		changedDetails = changedValue.substring(changedValue.indexOf("(") +1,changedValue.indexOf(")"));
+		changedValue = changedValue.substring(0,changedValue.indexOf("(") - 1);
+		updateQuery += "INSERT INTO " + changedTable + " (Id,"+ changedColumn + "," + col+") VALUES (" + changedId +",'" + changedValue + "','" + changedDetails + "') ON DUPLICATE KEY UPDATE " + changedColumn + "='" + changedValue + "', " + col + "='"+ changedDetails + "';";
+		}
+		else {
+		if (x > 1){
 		updateQuery += "INSERT INTO " + changedTable + " (Id,"+ changedColumn + ") VALUES ("+ changedId +",'" + changedValue + "') ON DUPLICATE KEY UPDATE " + changedColumn + "='" + changedValue + "';";
+		}}
 		console.log(e);
 })
 console.log(updateQuery);
