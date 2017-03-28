@@ -46,7 +46,7 @@ $(".changed").each(function(e){ //I could use the E index to create multiple obj
 		if (changedValue.indexOf("(") > 0 && x > 2)
 		{
 			var col = "Details"
-			if (changedValue.indexOf("n/a" > 0)){
+			if (changedValue.indexOf("n/a") > 0){
 				col = "Alt"
 			}
 			//update text and detail separately if you find ()

@@ -27,6 +27,7 @@ var focus = "top";
 var editing = false;
 var context = [20]; //I think I should work on creating limited arrays
 var current_mode = "compare";
+var clicked = false; //for detail window
 context[0]=["word","Id","Id"];
 
 //console.log(context[0]);
@@ -68,8 +69,8 @@ else{console.log("disabled");
  * @event lowerPaneClicked
  */
 $(document).on('click', 'table, #controls, #content', function(){
-$("#details").addClass('hidden');
-$("td.selected").removeClass('selected');
+//$("#details").addClass('hidden');
+//$("td.selected").removeAttr('class');
 changeHelp("table");
 if (focus != "table"){
 focus = "table";
@@ -85,6 +86,9 @@ $("#btn_compare").hide();
  * @event topPaneClicked
  */
 $(document).on('click', '#mode_search,#mode_edit', function(){
+
+$("#details").addClass('hidden');
+$("td.selected").removeAttr('class');
 
 if (focus != "top"){
 focus = "top";
@@ -509,17 +513,28 @@ adjustColumns();
 //$(document).on('dblclick', '#table td', function(){
 //
 //}
+
+$(document).on('click','#table td', function() {
+	console.log("I've been clicked");
+var clickedCell = $(this);
+if (editing == false){
+	console.log("I've been clicked");
+	$("td.selected").removeAttr('class');
+	clickedCell.addClass('selected');
+	//display details window
+	$("#details").removeAttr('class');
+	var word = clickedCell.html();
+	var y = clickedCell.parent("tr").index();
+	var languageId = clickedCell.index();
+	var cellId = document.getElementById("table").rows[y].cells[0].innerHTML;
+	getDetails(cellId, word, languageId);
+
+}})
+
 $(document).on('dblclick', '#table td', function() {
 var editedCell = $(this);
 if (editing == false){
-	editedCell.addClass('selected');
-	//display details window
-	$("#details").removeAttr('class');
-	var word = editedCell.html();
-	var y = editedCell.parent("tr").index();
-	var languageId = editedCell.index();
-	var cellId = document.getElementById("table").rows[y].cells[0].innerHTML;
-	getDetails(cellId, word, languageId);
+
 }else{
 
 	if (editedCell.attr('id') != "editing" && editedCell.index() != 0 ) //I use ID as the flag so that 

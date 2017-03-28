@@ -15,7 +15,7 @@ function pickHelp(topic){
 	return "<p>Edit mode lets you modify and add data.<br>Saving changes requires a login and a password.</p>";
 	break;
 	case("sql mode"):
-	return "<p>SQL mode lets you write your own SQL queries.<br>This mode is recommended only for advanced users.</p>";
+	return "<p>Search mode will let you find a word in all available languages.<br>This mode has not yet been implemented.</p>";
 	break;
 	case("compare mode"):
 	return "<p>Compare mode displays similar words present in all chosen languages.<br>In case of errors, try to pick fewer languages.</p>";
