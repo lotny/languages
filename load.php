@@ -4,6 +4,21 @@ error_reporting(E_ERROR); //stops displaying warnings/errors, I can create my ow
 $userquery = $_GET['userquery'];
 $servername = "localhost";
 
+//need to handle JSON here!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //$userquery = strtolower($userquery);
 

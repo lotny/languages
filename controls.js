@@ -22,12 +22,20 @@
 
 //init function?
 
+
+//test
+var ui = new object;
+ui.focus = function(){
+	
+}
+
 var query = "";
 var focus = "top";
 var editing = false;
 var context = [20]; //I think I should work on creating limited arrays
 var current_mode = "compare";
 var clicked = false; //for detail window
+var help = false;
 context[0]=["word","Id","Id"];
 
 //console.log(context[0]);
@@ -38,7 +46,7 @@ $("#btn_m_compare").hide();
 $("#controls").hide();
 $("#help_content").hide();
 
-var help = false;
+
 
 $(document).on('click', '#btn_help', function displayHelp(){
 	//toggle class?
@@ -179,7 +187,8 @@ $(this).removeClass("selected")
 }else{
 $(this).addClass("selected")};
 })
-//
+
+//no longer used
 function saveQuery(){
 var userquery = document.getElementById("userquery").value;
 if (userquery != "" ){
@@ -294,6 +303,7 @@ $("#btn_auto").hide();
 $("#btn_compare").hide();
 executeQuery(mode);
 }
+
 /**
  * Should work for every mode
  * should be broken apart into smaller functions
@@ -359,9 +369,8 @@ request.onupgradeneeded = function(event) {
 	}
 };
 		//end of indexeddb
-		
-		
 		adjustColumns();
+		
 //this should be better incorporated as a separate function
 //this function should handle toggling control buttons and panels!!!
 		$("#btn_edit").show();
@@ -627,6 +636,7 @@ if (changes_sum > 0){
 }
 adjustColumns();
 });
+
 
 //this could actually be done when saving and not before
 //adding a row could only add a row in the table, without creating new Id

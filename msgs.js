@@ -2,6 +2,7 @@
 function changeHelp(topic){
 $("#help_content").html(pickHelp(topic));
 }
+
 function pickHelp(topic){
 	//switch based on context
 	switch(topic){

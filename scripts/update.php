@@ -3,6 +3,9 @@
 $userquery = $_GET['updatequery'];
 $servername = "localhost";
 
+
+
+
 $username = "root"; 
 $password = "password"; 
 $database = "languages";

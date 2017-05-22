@@ -20,4 +20,9 @@
         <File name="ui.js" />
         <File name="details.php" />
     </Project>
+    <Project name="korean">
+        <File name="C:\xampp\htdocs\korean\default.css" />
+        <File name="C:\xampp\htdocs\korean\highlight.js" />
+        <File name="C:\xampp\htdocs\korean\index.html" />
+    </Project>
 </NotepadPlus>
