@@ -49,7 +49,7 @@ $("#btn_m_compare").hide();
 $("#controls").hide();
 $("#help_content").hide();
 
-$("#btn_nl, #btn_hr, #btn_se, #btn_it, #btn_la, #btn_cz, #btn_es").remove();
+$("#btn_nl, #btn_se, #btn_it, #btn_la, #btn_cz, #btn_es").remove();
 
 
 $(document).on('click', '#btn_help', function displayHelp(){
@@ -528,10 +528,10 @@ adjustColumns();
 //}
 
 $(document).on('click','#table td', function() {
-	console.log("I've been clicked");
+	//console.log("I've been clicked");
 var clickedCell = $(this);
 if (editing == false){
-	console.log("I've been clicked");
+	//console.log("I've been clicked");
 	$("td.selected").removeAttr('class');
 	clickedCell.addClass('selected');
 	//display details window

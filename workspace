@@ -12,6 +12,7 @@
         <Folder name="scripts">
             <File name="scripts\update.php" />
             <File name="scripts\addrow.php" />
+            <File name="scripts\php.ini" />
         </Folder>
         <File name="manifest.json" />
         <File name="changelog.html" />

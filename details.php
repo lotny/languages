@@ -5,6 +5,9 @@ $userquery = $_GET['userquery'];
 $servername = "localhost";
 
 
+
+
+
 $details = explode(";",$userquery);
 //$userquery = "SELECT Details from " . $details[0] . " where id = " . $details[1];
 
