@@ -1,21 +1,14 @@
 <?php header('Content-Type: text/html; charset=utf-8');
 //this script will handle mysql or mysqli depending on whether the server supports it
-error_reporting(E_ERROR); //stops displaying warnings/errors, I can create my own errors and pass them with json
+//error_reporting(E_ERROR); //stops displaying warnings/errors, I can create my own errors and pass them with json
 $userquery = $_GET['userquery'];
 $servername = "localhost";
 
 //need to handle JSON here!
 
-
-
-
-
-
-
-
-
-
-
+$JSON = json_decode($userquery);
+//var_dump($JSON);
+echo $JSON;
 
 
 

@@ -24,10 +24,13 @@
 
 
 //test
-var ui = new object;
+var ui = new Object;
 ui.focus = function(){
-	
+	console.log("asd");
 }
+
+
+
 
 var query = "";
 var focus = "top";
@@ -46,6 +49,7 @@ $("#btn_m_compare").hide();
 $("#controls").hide();
 $("#help_content").hide();
 
+$("#btn_nl, #btn_hr, #btn_se, #btn_it, #btn_la, #btn_cz, #btn_es").remove();
 
 
 $(document).on('click', '#btn_help', function displayHelp(){
@@ -55,7 +59,7 @@ $(document).on('click', '#btn_help', function displayHelp(){
 	help = false;
 	}else{
 	$("#help_content").show(300);
-	changeHelp("");
+	messages.changeHelp("");
 	help = true;
 	}
 }
@@ -79,7 +83,7 @@ else{console.log("disabled");
 $(document).on('click', 'table, #controls, #content', function(){
 //$("#details").addClass('hidden');
 //$("td.selected").removeAttr('class');
-changeHelp("table");
+messages.changeHelp("table");
 if (focus != "table"){
 focus = "table";
 $("#userquery").hide(300);
@@ -157,7 +161,7 @@ $("#btn_auto").hide(300);
 $("#btn_m_compare").hide(300);
 $("#btn_compare").show(300);
 $("#btn_m_edit").show(300);
-changeHelp("compare mode");
+messages.changeHelp("compare mode");
 break;
 case("edit"):
 
@@ -168,7 +172,7 @@ $("#btn_auto").show(300);
 $("#btn_m_edit").hide(300);
 $("#btn_compare").hide(300);
 $("#btn_m_compare").show(300);
-changeHelp("edit mode");
+messages.changeHelp("edit mode");
 break;
 case("sql"):
 $("#mode_compare").hide(300);
@@ -176,12 +180,12 @@ $("#mode_edit").hide(300);
 $("#mode_search").show(300);
 $("#mode_search_btns").show(300);
 $("#userquery").show(300);
-changeHelp("sql mode");
+messages.changeHelp("sql mode");
 break;}
 }
 //selecting language
 $(".btn_language").click(function(){
-changeHelp("languages");
+messages.changeHelp("languages");
 if ($(this).hasClass("selected")){
 $(this).removeClass("selected")
 }else{
@@ -432,7 +436,7 @@ $("#filter").bind('keypress', function(e) {
 });
 
 function filterInit(){
-	changeHelp("filter");
+	messages.changeHelp("filter");
 $("#table tbody tr").removeAttr("style");
 var filter = $("#filter").val().toLowerCase();
 var column = "";
@@ -580,13 +584,19 @@ if (editing == false){
 
 }});
 
+/**
+* 
+*/
 $(document).on('click','.changed', function(e){
-	changeHelp("changed");
+	messages.changeHelp("changed");
 	$(this).attr('class','cancelled');
 	e.stopPropagation();
 });
+/**
+*  
+*/
 $(document).on('click','.cancelled', function(e){
-	changeHelp("cancelled");
+	messages.changeHelp("cancelled");
 	$(this).attr('class','changed');
 	e.stopPropagation();
 });
@@ -653,7 +663,7 @@ console.log(e.result[0]);
 		//rowId = result from json
 		newRow = "<tr><td>" + e.result[0]['Id'] + "</td>" ;
 		for(var i = 1;i< table.rows[0].cells.length;i++){
-		newRow += "<td>-</td>";
+		newRow += "<td> - </td>";
 		}
 		newRow += "</tr>";
 		$("#table > tbody").append(newRow);

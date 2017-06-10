@@ -1,5 +1,6 @@
+var messages = new Object;
 
-function changeHelp(topic){
+messages.changeHelp = function(topic){
 $("#help_content").html(pickHelp(topic));
 }
 
@@ -66,6 +67,7 @@ $(this).remove();
 });
 //this function should store all the messages, this would make it easier to translate messages
 //or just to keep track of them
+//should be changed from switch to something more reasonable
 function messageCreate(messageCode){
 console.log(messageCode);
 switch(messageCode){
@@ -78,6 +80,7 @@ switch(messageCode){
 	case "QUERY TOO LONG":
 	messageShow("Sorry, the query is too long","error");
 	break;
+	//I think backend should handle sql error codes 
 	case 0:
 	messageShow("SQL query returned 0 rows - check conditions or pick fewer languages","error");
 	break;
