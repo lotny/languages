@@ -30,7 +30,47 @@ ui.focus = function(){
 }
 
 
+/**
+ * updates buttons based on the href
+ */
+function updateButtons(){
+var href = window.location.href;
 
+href = href.substring(href.indexOf('?lng=')+5);
+var lngs = href.split("_");
+console.log(lngs);
+if (lngs.indexOf("en")>=0)
+	{
+	$("#btn_en").addClass("selected");
+}
+if (lngs.indexOf("de")>=0)
+	{
+	$("#btn_de").addClass("selected");
+}
+if (lngs.indexOf("fr")>=0)
+	{
+	$("#btn_fr").addClass("selected");
+	}
+if (lngs.indexOf('pl') >= 0)
+	{
+	$("#btn_pl").addClass("selected");
+	}
+if (lngs.indexOf('hr') >= 0)
+	{
+	$("#btn_hr").addClass("selected");
+	}
+if (lngs.indexOf('ru') >= 0)
+	{
+	$("#btn_ru").addClass("selected");
+	}
+
+if (lngs.indexOf('kr') >= 0)
+	{
+	$("#btn_kr").addClass("selected");
+	}
+}
+
+updateButtons();
 
 var query = "";
 var focus = "top";
@@ -41,6 +81,7 @@ var clicked = false; //for detail window
 var help = false;
 context[0]=["word","Id","Id"];
 
+
 //console.log(context[0]);
 $("#mode_edit").show();
 $("#mode_search").hide();
@@ -50,6 +91,9 @@ $("#controls").hide();
 $("#help_content").hide();
 
 $("#btn_nl, #btn_se, #btn_it, #btn_la, #btn_cz, #btn_es").remove();
+
+
+
 
 
 $(document).on('click', '#btn_help', function displayHelp(){
@@ -235,13 +279,16 @@ context[1][0]+ "." + context[1][1] + " AS '" + context[1][2] + "', \n" +
 context[2][0]+ "." + context[2][1] + " AS '" + context[2][2] + "'\n" ;
 }
 
+var addressBar = "index.html?lng=";
 
 //expand the context array according to the selected languages:
 if ($("#btn_en").hasClass("selected")){
 context.push(["english","Text","English"]);
+addressBar += "en_";
 }
 if ($("#btn_de").hasClass("selected")){
 context.push(["german","Text","German"]);
+addressBar += "de_";
 }
 if ($("#btn_nl").hasClass("selected")){
 context.push(["dutch","Text","Dutch"]);
@@ -251,6 +298,7 @@ context.push(["swedish","Text","Swedish"]);
 }
 if ($("#btn_fr").hasClass("selected")){
 context.push(["french","Text","French"]);
+addressBar += "fr_";
 }
 if ($("#btn_es").hasClass("selected")){
 context.push(["spanish","Text","Spanish"]);
@@ -263,19 +311,31 @@ context.push(["latin","Text","Latin"]);
 }
 if ($("#btn_pl").hasClass("selected")){
 context.push(["polish","Text","Polish"]);
+addressBar += "pl_";
 }
 if ($("#btn_cz").hasClass("selected")){
 context.push(["czech","Text","Czech"]);
 }
 if ($("#btn_hr").hasClass("selected")){
 context.push(["croatian","Text","Croatian"]);
+addressBar += "hr_";
 }
 if ($("#btn_ru").hasClass("selected")){
 context.push(["russian","Text","Russian"]);
+addressBar += "ru_";
 }
 if ($("#btn_kr").hasClass("selected")){
 context.push(["korean","Text","Korean"]);
+addressBar += "kr_";
 }
+
+addressBar = addressBar.substring(0,addressBar.length - 1);
+//document.location.search = addressBar;
+if (window.history.replaceState) {
+   //prevents browser from storing history with each change:
+   window.history.replaceState("", "languages", addressBar);
+}
+
 
 //get languages, need to handle this better!!!!!!!!
 var lng = mode == "edit" ? 3 : 1;

@@ -74,7 +74,7 @@ function messageCreate(messageCode){
 console.log(messageCode);
 switch(messageCode){
 	case "CONNECTION FAIL":
-	messageShow("unable to connect - check if SQL server is running","error");
+	messageShow("unable to connect to the database","error");
 	break;
 	case "UPDATES TOO LONG":
 	messageShow("Sorry, there are too many changes. Click on some changed cells to deactivate them and try again.","error");
@@ -84,13 +84,13 @@ switch(messageCode){
 	break;
 	//I think backend should handle sql error codes 
 	case 0:
-	messageShow("SQL query returned 0 rows - check conditions or pick fewer languages","error");
+	messageShow("Query returned 0 rows - check conditions or pick fewer languages","error");
 	break;
 	case 1064:
-	messageShow("SQL query failed - check syntax","error");
+	messageShow("Query failed - check syntax","error");
 	break;
 	case 1065:
-	messageShow("SQL query failed - try picking fewer languages","error");
+	messageShow("Query failed - try picking fewer languages","error");
 	break;
 	default:
 	messageShow("unhandled exception occured","error");
