@@ -26,7 +26,7 @@
 //test
 var ui = new Object;
 ui.focus = function(){
-	console.log("asd");
+	console.log("test");
 }
 
 

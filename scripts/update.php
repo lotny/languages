@@ -4,13 +4,9 @@ include_once('../../config.inc.php');
 $userquery = $_GET['updatequery'];
 $servername = "localhost";
 
+//echo exec('whoami');
 
 
-
-//call updateCell(. $tableName .
-
-
-//Host-ed database:
 
 //change string to an array and execute each query one by one:
 if ($userquery == ""){
@@ -25,7 +21,7 @@ die;
 $userqueries = explode(";",$userquery);
 
 //connect to the server:
-$conn = mysql_connect($servername,$username,$password);
+$conn = mysql_connect($servername,$writername,$writerpass);
 mysql_select_db($database);
 
 
