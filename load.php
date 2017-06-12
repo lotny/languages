@@ -3,7 +3,7 @@
 //error_reporting(E_ERROR); //stops displaying warnings/errors, I can create my own errors and pass them with json
 $userquery = $_GET['userquery'];
 $servername = "localhost";
-include_once('..\..\config.inc.php');
+include_once('../config.inc.php');
 
 
 //need to handle JSON here!
@@ -19,7 +19,7 @@ if(function_exists('mysql_connect'))
 		{
 		
 		
-		$conn = mysql_connect($servername,$username,$password) ;
+		$conn = mysql_connect($servername,$readername,$readerpass) ;
 		mysql_select_db($database);
 		mysql_query("SET CHARSET UTF8");
 		$result = mysql_query($userquery);
@@ -40,13 +40,10 @@ if(function_exists('mysql_connect'))
 		mysql_close($conn);
 }else{
 		#mysqli
-		$username = "root"; 
-		$password = "password"; 
-		$database = "languages";
-		$servername = "localhost";
+		
 		
 		$sqlTable = "";
-		$conn = new mysqli($servername, $username, $password, $database) or die("unable to connect");
+		$conn = new mysqli($servername, $readername, $readerpass, $database) or die("unable to connect");
 		if ($conn->connect_error) {
 			$error = ["ERROR","CONNECTION FAIL"];
 			echo json_encode(array("result" => $error)); 

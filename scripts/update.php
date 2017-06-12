@@ -1,6 +1,6 @@
 <?php header('Content-Type: text/html; charset=utf-8');
 //this script updates relevant tables and columns in database
-include_once('..\..\config.inc.php');
+include_once('../../config.inc.php');
 $userquery = $_GET['updatequery'];
 $servername = "localhost";
 
