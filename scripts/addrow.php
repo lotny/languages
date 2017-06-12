@@ -47,7 +47,6 @@ $result = mysql_query($addrow);
 }else{
 	#mysqli
 
-
 		$sqlTable = "";
 		$conn = new mysqli($servername, $writername, $writerpass, $database) or die("unable to connect");
 		if ($conn->connect_error) {
