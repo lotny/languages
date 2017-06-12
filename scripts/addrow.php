@@ -1,16 +1,13 @@
 <?php header('Content-Type: text/html; charset=utf-8');
 //this script updates relevant tables and columns in database
+include_once('..\..\config.inc.php');
 $addrow = "INSERT INTO word (TypeId,Comment) VALUES (1,'')";
 $userquery = "SELECT Id FROM word ORDER BY id DESC LIMIT 1";
 $servername = "localhost";
 
-$username = "languag5_updater"; 
-$password = "updater32167"; 
-$database = "languag5_languages";
-
 
 if(function_exists('mysql_connect')){
-$conn = mysql_connect($servername,$username,$password);
+$conn = mysql_connect($servername,$writername,$writerpass);
 mysql_select_db($database);
 
 if ($conn->connect_error) {
@@ -49,12 +46,10 @@ $result = mysql_query($addrow);
 		mysql_close($conn);
 }else{
 	#mysqli
-$username = "root"; 
-$password = "password"; 
-$database = "languages";
+
 
 		$sqlTable = "";
-		$conn = new mysqli($servername, $username, $password, $database) or die("unable to connect");
+		$conn = new mysqli($servername, $writername, $writerpass, $database) or die("unable to connect");
 		if ($conn->connect_error) {
 			$error = ["ERROR","CONNECTION FAIL"];
 			echo json_encode(array("result" => $error)); 

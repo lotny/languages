@@ -1,23 +1,17 @@
 <?php header('Content-Type: text/html; charset=utf-8');
 //this script updates relevant tables and columns in database
+include_once('..\..\config.inc.php');
 $userquery = $_GET['updatequery'];
 $servername = "localhost";
 
 
 
 
-//$username = "root"; 
-//$password = "password"; 
-//$database = "languages";
-
-
 //call updateCell(. $tableName .
 
 
 //Host-ed database:
-$username = "languag6_updater"; 
-$password = "Updater32167"; 
-$database = "languag6_languages";
+
 //change string to an array and execute each query one by one:
 if ($userquery == ""){
 	$error = ["ERROR","UPDATES TOO LONG"];

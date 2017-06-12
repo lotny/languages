@@ -3,21 +3,21 @@
 //error_reporting(E_ERROR); //stops displaying warnings/errors, I can create my own errors and pass them with json
 $userquery = $_GET['userquery'];
 $servername = "localhost";
+include_once('..\..\config.inc.php');
+
 
 //need to handle JSON here!
 
 $JSON = json_decode($userquery);
 //var_dump($JSON);
-echo $JSON;
+//echo $JSON;
 
 
 //$userquery = strtolower($userquery);
 
 if(function_exists('mysql_connect'))
 		{
-		$username = "languag6_reader";
-		$password = "Reader32167"; 
-		$database = "languag6_languages";
+		
 		
 		$conn = mysql_connect($servername,$username,$password) ;
 		mysql_select_db($database);
