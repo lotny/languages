@@ -1,7 +1,7 @@
 #languages
 
 
-[!screencapture](screencap.png)
+![screencapture](screencap.png "screencap")
 
 
 You can see the demo at:
