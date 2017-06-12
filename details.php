@@ -18,9 +18,9 @@ $userquery = "SELECT type.name as 'Type', " . $details[0] . ".details as 'Detail
 
 if(function_exists('mysql_connect'))
 		{
-		$username = "languag5_reader";
-		$password = "reader32167"; 
-		$database = "languag5_languages";
+		$username = "languag6_reader";
+		$password = "Reader32167"; 
+		$database = "languag6_languages";
 		
 		$conn = mysql_connect($servername,$username,$password) ;
 		mysql_select_db($database);

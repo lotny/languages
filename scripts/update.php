@@ -6,18 +6,18 @@ $servername = "localhost";
 
 
 
-$username = "root"; 
-$password = "password"; 
-$database = "languages";
+//$username = "root"; 
+//$password = "password"; 
+//$database = "languages";
 
 
 //call updateCell(. $tableName .
 
 
 //Host-ed database:
-//$username = "languag5_updater"; 
-//$password = "updater32167"; 
-//$database = "languag5_languages";
+$username = "languag6_updater"; 
+$password = "Updater32167"; 
+$database = "languag6_languages";
 //change string to an array and execute each query one by one:
 if ($userquery == ""){
 	$error = ["ERROR","UPDATES TOO LONG"];

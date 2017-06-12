@@ -70,7 +70,17 @@ if (lngs.indexOf('kr') >= 0)
 	}
 }
 
+
+
+//function setCookie() {
+//    var url = window.location.search;
+//    if(url.indexOf('?lng=') !== -1)
+//        document.cookie="lng="+url+"; path=/; domain=.localhost/languages";
+//}
+
 updateButtons();
+//setCookie();
+
 
 var query = "";
 var focus = "top";
@@ -331,10 +341,12 @@ addressBar += "kr_";
 
 addressBar = addressBar.substring(0,addressBar.length - 1);
 //document.location.search = addressBar;
-if (window.history.replaceState) {
-   //prevents browser from storing history with each change:
-   window.history.replaceState("", "languages", addressBar);
-}
+
+//not sure if safe
+//if (window.history.replaceState) {
+//   //prevents browser from storing history with each change:
+//   window.history.replaceState("", "languages", addressBar);
+//}
 
 
 //get languages, need to handle this better!!!!!!!!

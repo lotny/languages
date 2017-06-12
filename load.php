@@ -11,15 +11,13 @@ $JSON = json_decode($userquery);
 echo $JSON;
 
 
-
-
 //$userquery = strtolower($userquery);
 
 if(function_exists('mysql_connect'))
 		{
-		$username = "languag5_reader";
-		$password = "reader32167"; 
-		$database = "languag5_languages";
+		$username = "languag6_reader";
+		$password = "Reader32167"; 
+		$database = "languag6_languages";
 		
 		$conn = mysql_connect($servername,$username,$password) ;
 		mysql_select_db($database);
