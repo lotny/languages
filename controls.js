@@ -29,6 +29,59 @@ ui.focus = function(){
 	console.log("test");
 }
 
+var table = new Object;
+//table.context
+
+table.adjustColumns = function(){
+/**
+ * Fixes column width
+ */
+
+var table_width = 0;
+$('#table thead').show(); //has to be shown to get proper size does not work though
+$('#table th').each(function(e){
+table_width = Math.round($(this).width());
+$('#copy thead th')[e].width = table_width; //add a way of defining COL?
+})
+
+$('#table thead').height("0px");
+$('#table thead').hide();
+
+}
+
+
+table.build = function(result){
+		$("#content").html("<table id='table'><thead></thead><tbody></tbody></table>");//create table, hide header
+		$("#tableheader").html("<table id='copy'><thead></thead><tbody></tbody></table>"); //create visible duplicate
+		for (h=0;h<Object.keys(result[0]).length;h++) //gets length
+		{
+		
+		var columnHeader = "<th>" + Object.keys(result[0])[h] + "</th>";
+		$("#table thead").append(columnHeader);//create headers
+		$("#tableheader thead").append(columnHeader);//create headers
+		}
+		
+		for (x=0; x<result.length; x++) //for each row
+		{
+		var tableRow = "<tr>";
+			for(var y in result[x]){ //y is the name not the index I think
+			if (result[x][y]){
+			var tableRow = tableRow + "<td>" + result[x][y] + "</td>";
+			}else{
+			
+			var tableRow = tableRow + "<td></td>";
+			}
+			}
+		//closing the row:
+		tableRow = tableRow + "</tr>";
+		$('#table tbody').append(tableRow);
+		}
+table.adjustColumns();
+}
+
+
+
+
 
 /**
  * updates buttons based on the href
@@ -182,24 +235,10 @@ $(window).bind('resize', function(e){
     window.resizeEvt;
     $(window).resize(function(){
         clearTimeout(window.resizeEvt);
-        window.resizeEvt = setTimeout(function(){adjustColumns()},300);
+        window.resizeEvt = setTimeout(function(){table.adjustColumns()},300);
     });
 });
-/**
- * Fixes column width
- */
-function adjustColumns(){
-var table_width = 0;
-$('#table thead').show(); //has to be shown to get proper size does not work though
-$('#table th').each(function(e){
-table_width = Math.round($(this).width());
-$('#copy thead th')[e].width = table_width; //add a way of defining COL?
-})
 
-$('#table thead').height("0px");
-$('#table thead').hide();
-
-}
 /**
  * This function should be simplified
  */ 
@@ -398,33 +437,8 @@ $.getJSON('load.php', {'userquery': userquery}, function(e) {
 	if (e.result[0] != "ERROR")//check if there was an error
 	
 	{
-		console.log(e.result[0]);
-		console.log(e.result[0]["Id"]);
-		$("#content").html("<table id='table'><thead></thead><tbody></tbody></table>");//create table, hide header
-		$("#tableheader").html("<table id='copy'><thead></thead><tbody></tbody></table>"); //create visible duplicate
-		for (h=0;h<Object.keys(e.result[0]).length;h++) //gets length
-		{
-		//console.log(Object.keys(e.result[0])[h]);//gets headers for columns
-		var columnHeader = "<th>" + Object.keys(e.result[0])[h] + "</th>";
-		$("#table thead").append(columnHeader);//create headers
-		$("#tableheader thead").append(columnHeader);//create headers
-		}
+		table.build(e.result);
 		
-		for (x=0; x<e.result.length; x++) //for each row
-		{
-		var tableRow = "<tr>";
-			for(var y in e.result[x]){ //y is the name not the index I think
-			if (e.result[x][y]){
-			var tableRow = tableRow + "<td>" + e.result[x][y] + "</td>";
-			}else{
-			
-			var tableRow = tableRow + "<td></td>";
-			}
-			}
-		//closing the row:
-		tableRow = tableRow + "</tr>";
-		$('#table tbody').append(tableRow);
-		}
 		
 		
 		//playing with indexed db//
@@ -445,7 +459,7 @@ request.onupgradeneeded = function(event) {
 	}
 };
 		//end of indexeddb
-		adjustColumns();
+		table.adjustColumns();
 		
 //this should be better incorporated as a separate function
 //this function should handle toggling control buttons and panels!!!
@@ -524,7 +538,7 @@ if (filter != ""){
 	filterAll(filter);
 	}
 }
-adjustColumns();
+table.adjustColumns();
 }
 
 /*
@@ -551,7 +565,7 @@ for(var i=0; i<rowLength; i+=1){
 	row.style.display = "none";
 	}
 }
-adjustColumns();
+table.adjustColumns();
 }
 
 /**
@@ -582,7 +596,7 @@ for(var i=0; i<rowLength; i+=1){
 	} else {row.style.display = "none"}
 	} else {row.style.display = "none"} 
 }
-adjustColumns();
+table.adjustColumns();
 }
 
 
@@ -702,7 +716,7 @@ for(var i=0; i<rowLength; i+=1){
 //test this: if there are no changes we should not hide any cells!
 if (changes_sum > 0){
 	$("#table thead").show();//for adjusting columns?
-	adjustColumns();
+	table.adjustColumns();
 	messageShow("number of changes: ","info",changes_sum);
 	$(this).html("show all");
 	}else{
@@ -716,7 +730,7 @@ if (changes_sum > 0){
 	$("#table thead").show();
 	
 }
-adjustColumns();
+table.adjustColumns();
 });
 
 
@@ -743,6 +757,20 @@ console.log(e.result[0]);
 })
 }
 
-function log(message){
-	$.getJSON('savequery.php',  {'userquery': message});
+
+function search(){
+var searchquery = $("#userquery").val();
+console.log(searchquery);
+$.getJSON('search.php', {'userquery': searchquery}, function(e) {
+	
+	if (e.result[0] != "ERROR")//check if there was an error
+{
+
+table.build(e.result);
+		
+     }
+	 console.log(e.result[0])
+})
+		
+
 }
