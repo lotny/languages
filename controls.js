@@ -32,11 +32,10 @@ ui.focus = function(){
 var table = new Object;
 //table.context
 
-table.adjustColumns = function(){
 /**
  * Fixes column width
  */
-
+table.adjustColumns = function(){
 var table_width = 0;
 $('#table thead').show(); //has to be shown to get proper size does not work though
 $('#table th').each(function(e){
@@ -80,6 +79,76 @@ table.adjustColumns();
 }
 
 
+
+var context = [20]; //I think I should work on creating limited arrays
+context[0]=["word","Id","Id"];
+
+
+
+table.setContext = function(){
+
+var addressBar = "index.html?lng=";
+
+//expand the context array according to the selected languages:
+if ($("#btn_en").hasClass("selected")){
+context.push(["english","Text","English"]);
+addressBar += "en_";
+}
+if ($("#btn_de").hasClass("selected")){
+context.push(["german","Text","German"]);
+addressBar += "de_";
+}
+if ($("#btn_nl").hasClass("selected")){
+context.push(["dutch","Text","Dutch"]);
+}
+if ($("#btn_se").hasClass("selected")){
+context.push(["swedish","Text","Swedish"]);
+}
+if ($("#btn_fr").hasClass("selected")){
+context.push(["french","Text","French"]);
+addressBar += "fr_";
+}
+if ($("#btn_es").hasClass("selected")){
+context.push(["spanish","Text","Spanish"]);
+}
+if ($("#btn_it").hasClass("selected")){
+context.push(["italian","Text","Italian"]);
+}
+if ($("#btn_la").hasClass("selected")){
+context.push(["latin","Text","Latin"]);
+}
+if ($("#btn_pl").hasClass("selected")){
+context.push(["polish","Text","Polish"]);
+addressBar += "pl_";
+}
+if ($("#btn_cz").hasClass("selected")){
+context.push(["czech","Text","Czech"]);
+}
+if ($("#btn_hr").hasClass("selected")){
+context.push(["croatian","Text","Croatian"]);
+addressBar += "hr_";
+}
+if ($("#btn_ru").hasClass("selected")){
+context.push(["russian","Text","Russian"]);
+addressBar += "ru_";
+}
+if ($("#btn_kr").hasClass("selected")){
+context.push(["korean","Text","Korean"]);
+addressBar += "kr_";
+}
+
+addressBar = addressBar.substring(0,addressBar.length - 1);
+//document.location.search = addressBar;
+
+//not sure if safe
+//if (window.history.replaceState) {
+//   //prevents browser from storing history with each change:
+//   window.history.replaceState("", "languages", addressBar);
+//}
+
+
+
+}
 
 
 
@@ -138,11 +207,11 @@ updateButtons();
 var query = "";
 var focus = "top";
 var editing = false;
-var context = [20]; //I think I should work on creating limited arrays
+
 var current_mode = "compare";
 var clicked = false; //for detail window
 var help = false;
-context[0]=["word","Id","Id"];
+
 
 
 //console.log(context[0]);
@@ -328,64 +397,7 @@ context[1][0]+ "." + context[1][1] + " AS '" + context[1][2] + "', \n" +
 context[2][0]+ "." + context[2][1] + " AS '" + context[2][2] + "'\n" ;
 }
 
-var addressBar = "index.html?lng=";
-
-//expand the context array according to the selected languages:
-if ($("#btn_en").hasClass("selected")){
-context.push(["english","Text","English"]);
-addressBar += "en_";
-}
-if ($("#btn_de").hasClass("selected")){
-context.push(["german","Text","German"]);
-addressBar += "de_";
-}
-if ($("#btn_nl").hasClass("selected")){
-context.push(["dutch","Text","Dutch"]);
-}
-if ($("#btn_se").hasClass("selected")){
-context.push(["swedish","Text","Swedish"]);
-}
-if ($("#btn_fr").hasClass("selected")){
-context.push(["french","Text","French"]);
-addressBar += "fr_";
-}
-if ($("#btn_es").hasClass("selected")){
-context.push(["spanish","Text","Spanish"]);
-}
-if ($("#btn_it").hasClass("selected")){
-context.push(["italian","Text","Italian"]);
-}
-if ($("#btn_la").hasClass("selected")){
-context.push(["latin","Text","Latin"]);
-}
-if ($("#btn_pl").hasClass("selected")){
-context.push(["polish","Text","Polish"]);
-addressBar += "pl_";
-}
-if ($("#btn_cz").hasClass("selected")){
-context.push(["czech","Text","Czech"]);
-}
-if ($("#btn_hr").hasClass("selected")){
-context.push(["croatian","Text","Croatian"]);
-addressBar += "hr_";
-}
-if ($("#btn_ru").hasClass("selected")){
-context.push(["russian","Text","Russian"]);
-addressBar += "ru_";
-}
-if ($("#btn_kr").hasClass("selected")){
-context.push(["korean","Text","Korean"]);
-addressBar += "kr_";
-}
-
-addressBar = addressBar.substring(0,addressBar.length - 1);
-//document.location.search = addressBar;
-
-//not sure if safe
-//if (window.history.replaceState) {
-//   //prevents browser from storing history with each change:
-//   window.history.replaceState("", "languages", addressBar);
-//}
+table.setContext();
 
 
 //get languages, need to handle this better!!!!!!!!
@@ -617,8 +629,10 @@ $(document).on('click','#table td', function() {
 	//console.log("I've been clicked");
 var clickedCell = $(this);
 if (editing == false){
-	//console.log("I've been clicked");
 	$("td.selected").removeAttr('class');
+	if (clickedCell.html() == "" | clickedCell.html() == null) return;
+	//console.log("I've been clicked");
+	
 	clickedCell.addClass('selected');
 	//display details window
 	$("#details").removeAttr('class');

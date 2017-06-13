@@ -6,7 +6,6 @@ $servername = "localhost";
 include_once('../config.inc.php');
 
 $details = explode(";",$userquery);
-//$userquery = "SELECT Details from " . $details[0] . " where id = " . $details[1];
 
 
 

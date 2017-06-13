@@ -6,7 +6,13 @@ $servername = "localhost";
 include_once('../config.inc.php');
 
 
-//need to handle JSON here!
+//query
+// {"mode":"compare-strict",
+// "languages":["en","kr","en"]
+//
+//}
+
+
 
 $JSON = json_decode($userquery);
 //var_dump($JSON);
@@ -14,6 +20,17 @@ $JSON = json_decode($userquery);
 
 
 //$userquery = strtolower($userquery);
+
+
+
+//build query:
+//SELECT QUERY
+
+
+
+
+
+
 
 if(function_exists('mysql_connect'))
 		{

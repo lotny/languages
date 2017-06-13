@@ -17,6 +17,7 @@ $userquery = "SELECT word.id, english.text as 'English', german.text as 'german'
   left join french on word.id = french.id
   left join polish on word.id = polish.id
   left join croatian on word.id = croatian.id
+  
 
  WHERE word.id IN  
 
@@ -34,8 +35,7 @@ select id from croatian where croatian.text like '". $searchterm ."%')";
 
 if(function_exists('mysql_connect'))
 		{
-		
-		
+
 		$conn = mysql_connect($servername,$readername,$readerpass) ;
 		mysql_select_db($database);
 		mysql_query("SET CHARSET UTF8");
