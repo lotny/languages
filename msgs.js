@@ -83,13 +83,13 @@ switch(messageCode){
 	messageShow("Sorry, the query is too long","error");
 	break;
 	//I think backend should handle sql error codes 
-	case 0:
+	case "QUERY EMPTY":
 	messageShow("Query returned 0 rows - check conditions or pick fewer languages","error");
 	break;
-	case 1064:
+	case "QUERY FAILED":
 	messageShow("Query failed - check syntax","error");
 	break;
-	case 1065:
+	case "0000":
 	messageShow("Query failed - try picking fewer languages","error");
 	break;
 	default:

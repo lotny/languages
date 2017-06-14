@@ -1,11 +1,8 @@
 <?php header('Content-Type: text/html; charset=utf-8');
-
-
-$servername = "localhost";
 include_once('../config.inc.php');
 $searchterm= $_GET['userquery'];
 
-
+$searchterm = "'%".$serachterm."%'";
 
 //build query
 $userquery = "SELECT word.id, english.text as 'English', german.text as 'german', french.text as 'french', polish.text as 'polish',  croatian.text as 'croatian'
@@ -21,15 +18,15 @@ $userquery = "SELECT word.id, english.text as 'English', german.text as 'german'
 
  WHERE word.id IN  
 
- (select id from english where english.text like '". $searchterm ."%'
+ (select id from english where english.text like ". $searchterm ."
   union ALL
-select id from german where german.text like '". $searchterm ."%'
+select id from german where german.text like ". $searchterm ."
 union ALL
-select id from french where french.text like '". $searchterm ."%'
+select id from french where french.text like ". $searchterm ."
 union ALL
-select id from polish where polish.text like '". $searchterm ."%'
+select id from polish where polish.text like ". $searchterm ."
 union ALL
-select id from croatian where croatian.text like '". $searchterm ."%')";
+select id from croatian where croatian.text like ". $searchterm .")";
 
 
 

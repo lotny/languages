@@ -1,8 +1,8 @@
 {
   "name": "Languages",
   "description": "This app lets you compare languages",
-  "version": 0.3,
-  "manifest_version": 6,
+  "version": 0.4,
+  "manifest_version": 7,
   "icons": [{
     "src": "icon48.png",
     "sizes": "48x48"

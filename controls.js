@@ -29,7 +29,10 @@ ui.focus = function(){
 	console.log("test");
 }
 
-var table = new Object;
+var table = {
+editing = false
+
+}
 //table.context
 
 /**
@@ -77,6 +80,17 @@ table.build = function(result){
 		}
 table.adjustColumns();
 }
+
+
+
+
+var tableContext = new Object();
+
+var columnContext = {
+tableId = "",
+columnId = "",
+columnHeader = ""
+};
 
 
 
@@ -222,6 +236,7 @@ $("#btn_m_compare").hide();
 $("#controls").hide();
 $("#help_content").hide();
 
+
 $("#btn_nl, #btn_se, #btn_it, #btn_la, #btn_cz, #btn_es").remove();
 
 
@@ -343,7 +358,11 @@ $("#mode_search").show(300);
 $("#mode_search_btns").show(300);
 $("#userquery").show(300);
 messages.changeHelp("sql mode");
-break;}
+break;
+case("table"):
+
+break;
+}
 }
 //selecting language
 $(".btn_language").click(function(){
@@ -521,7 +540,9 @@ request.onupgradeneeded = function(event) {
 .fail(function(){
 		messageShow("connection error","error");
 	});
-;};
+};
+
+
 
 //my script for filtering
 var filter = "";
@@ -647,7 +668,7 @@ if (editing == false){
 $(document).on('dblclick', '#table td', function() {
 var editedCell = $(this);
 if (editing == false){
-
+return;
 }else{
 
 	if (editedCell.attr('id') != "editing" && editedCell.index() != 0 ) //I use ID as the flag so that 
@@ -669,7 +690,7 @@ if (editing == false){
 		}
 			$('.input').bind('keypress', function(e) { //defocus if enter was pressed
 				if(e.keyCode==13){
-						$('.input').blur();
+					$('.input').blur();
 			}
 			});
 			$(".input").focusout(function(){  //this function is here so that it works for the created input element
@@ -782,7 +803,7 @@ $.getJSON('search.php', {'userquery': searchquery}, function(e) {
 
 table.build(e.result);
 		
-     }
+}
 	 console.log(e.result[0])
 })
 		

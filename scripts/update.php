@@ -2,7 +2,6 @@
 //this script updates relevant tables and columns in database
 include_once('../../config.inc.php');
 $userquery = $_GET['updatequery'];
-$servername = "localhost";
 
 //echo exec('whoami');
 

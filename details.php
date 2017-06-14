@@ -2,7 +2,6 @@
 //this script will handle mysql or mysqli depending on whether the server supports it
 //error_reporting(E_ERROR); //stops displaying warnings/errors, I can create my own errors and pass them with json
 $userquery = $_GET['userquery'];
-$servername = "localhost";
 include_once('../config.inc.php');
 
 $details = explode(";",$userquery);

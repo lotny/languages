@@ -2,7 +2,7 @@
 //this script will handle mysql or mysqli depending on whether the server supports it
 //error_reporting(E_ERROR); //stops displaying warnings/errors, I can create my own errors and pass them with json
 $userquery = $_GET['userquery'];
-$servername = "localhost";
+
 include_once('../config.inc.php');
 
 
@@ -41,7 +41,7 @@ if(function_exists('mysql_connect'))
 		mysql_query("SET CHARSET UTF8");
 		$result = mysql_query($userquery);
 		if(!$result){
-		$error = ["ERROR",mysql_errno($conn)];
+		$error = ["ERROR","DUNNO"];
 		echo json_encode(array("result" => $error));
 		mysql_close($conn);
 		return;
@@ -52,7 +52,7 @@ if(function_exists('mysql_connect'))
 		echo json_encode(array("result" => $rows));
 		mysql_free_result($result);
 	}else{
-		$error = ["ERROR",mysql_errno($conn)];
+		$error = ["ERROR","EMPTY RESULT"];
 		echo json_encode(array("result" => $error));}
 		mysql_close($conn);
 }else{
