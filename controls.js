@@ -87,9 +87,12 @@ table.adjustColumns();
 var tableContext = new Object();
 
 var columnContext = {
-tableId: "",
-columnId: "",
-columnHeader: ""
+columnId: 0,
+tableName: "",
+columnName: "",
+columnHeader: "",
+langaugeId: "",
+wordId: ""
 };
 
 
@@ -105,11 +108,11 @@ var addressBar = "index.html?lng=";
 
 //expand the context array according to the selected languages:
 if ($("#btn_en").hasClass("selected")){
-context.push(["english","Text","English"]);
+context.push(["english","Text","English","en"]);
 addressBar += "en_";
 }
 if ($("#btn_de").hasClass("selected")){
-context.push(["german","Text","German"]);
+context.push(["german","Text","German","de"]);
 addressBar += "de_";
 }
 if ($("#btn_nl").hasClass("selected")){
@@ -661,9 +664,9 @@ if (editing == false){
 	$("#details").removeAttr('class');
 	var word = clickedCell.html();
 	var y = clickedCell.parent("tr").index();
-	var languageId = clickedCell.index();
+	var columnId = clickedCell.index();
 	var cellId = document.getElementById("table").rows[y].cells[0].innerHTML;
-	getDetails(cellId, word, languageId);
+	getDetails(cellId, word, columnId);
 
 }})
 
