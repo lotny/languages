@@ -8,8 +8,8 @@ include_once('../config.inc.php');
 
 //query
 // {"mode":"compare-strict",
-// "languages":["en","kr","en"]
-//
+//  "languages":["en","kr","en"],
+//  "search":""
 //}
 
 
