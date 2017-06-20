@@ -4,32 +4,30 @@
 $userquery = $_GET['userquery'];
 include_once('../config.inc.php');
 
+$languageId = $userquery['languageId'];
+$wordId = $userquery['wordId'];
 
-//instead of an array we should have a json with properties!
+if ($languageId != "en")
+{
+    $error = new stdClass();
+    $error -> ERROR = "NOT_FOUND";
+    echo json_encode($error);
+return;
+}
 
-
-
-$languageId = "en";
-$wordId = $userquery;
 $url = $odUrl . "entries/" . $languageId . "/" . $wordId;
 
 $curl = curl_init($url);
-
-
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
 curl_setopt($curl, CURLOPT_HTTPHEADER, array(
   'app_id: ' .$appId,
   'app_key: ' .$appKey
 ));
 
 // Get response
-
 $apiresponse = curl_exec($curl);
 
 $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-
 
 if ($httpcode == 404){
 $error = new stdClass();
