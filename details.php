@@ -4,6 +4,8 @@
 $userquery = $_GET['userquery'];
 include_once('../config.inc.php');
 
+
+//instead of an array we should have a json with properties!
 $details = explode(";",$userquery);
 
 
