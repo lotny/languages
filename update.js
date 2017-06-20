@@ -1,7 +1,6 @@
 var successRate = [0,0]
 
 function addRow(){
-	var updatequery = "INSERT INTO word (COMMENT,TypeID) VALUES ('',0);SELECT LAST (ID) FROM word;"
 	var updatequery = "";
 	$.getJSON('addrow.php', {'updatequery': updatequery}, function JSONCall(e) {
 	console.log(e.result[0]);
@@ -30,8 +29,8 @@ function executeUpdate(){
 if ($(".changed").length == 0){messageShow("no changes found","error"); return};
 var updateQuery = "";
 //reset the counters
-successRate[0] = 0;
-successRate[1] = 0;
+var successRate = 0;
+var failureRate = 0;
 $(".changed").each(function(e){ //I could use the E index to create multiple objects//
 		var changedCell = $(this);
 		var x = changedCell.index();
@@ -46,7 +45,8 @@ $(".changed").each(function(e){ //I could use the E index to create multiple obj
 		if (changedValue.indexOf("(") > 0 && x > 2)
 		{
 			var col = "Details"
-			if (changedValue.indexOf("n/a") > 0){
+			console.log(changedValue);
+			if (changedValue.indexOf("n/a") >= 0){
 				col = "Alt"
 			}
 			//update text and detail separately if you find ()
@@ -68,14 +68,14 @@ $.getJSON('scripts/update.php', {'updatequery': updateQuery}, function(e) {
 	$(".changed").each(function(i){//iterate through each cell
 		changedCell = $(this);
 		if(e.result[i] == "success"){
-			successRate[0] += 1; //increase success counter
+			successRate += 1; 
 		changedCell.attr("class","saved");
 	}else{
-			successRate[1] += 1; //increase failure counter
+			failureRate += 1; 
 		}
 	})
-	var total = successRate[0] + successRate[1];
-	messageShow("changes saved: " + successRate[0] + "/" + total,"info");
+	var total = successRate + failureRate;
+	messageShow("changes saved: " + successRate + "/" + total,"info");
 	}
 	else{ //handle errors based on ERROR code
 	messageCreate(e.result[1]);
