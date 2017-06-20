@@ -30,7 +30,7 @@ ui.focus = function(){
 }
 
 var table = {
-editing = false
+editing:false
 
 }
 //table.context
@@ -87,9 +87,9 @@ table.adjustColumns();
 var tableContext = new Object();
 
 var columnContext = {
-tableId = "",
-columnId = "",
-columnHeader = ""
+tableId: "",
+columnId: "",
+columnHeader: ""
 };
 
 
@@ -649,6 +649,8 @@ table.adjustColumns();
 $(document).on('click','#table td', function() {
 	//console.log("I've been clicked");
 var clickedCell = $(this);
+console.log(clickedCell.className);
+if (clickedCell.hasClass('selected')) return;
 if (editing == false){
 	$("td.selected").removeAttr('class');
 	if (clickedCell.html() == "" | clickedCell.html() == null) return;
@@ -727,11 +729,11 @@ $(document).on('click','.cancelled', function(e){
 $(document).on('click','#btn_change', function(){
 if ($(this).html() == "show changes"){
 
-var table = document.getElementById('table');
-var rowLength = table.rows.length;
+var tbl = document.getElementById('table');
+var rowLength = tbl.rows.length;
 var changes_sum = 0;
 for(var i=0; i<rowLength; i+=1){  
-	var row = table.rows[i];
+	var row = tbl.rows[i];
 	if (row.className == "added"){
 	break;
 	}
@@ -751,7 +753,7 @@ for(var i=0; i<rowLength; i+=1){
 //test this: if there are no changes we should not hide any cells!
 if (changes_sum > 0){
 	$("#table thead").show();//for adjusting columns?
-	table.adjustColumns();
+	
 	messageShow("number of changes: ","info",changes_sum);
 	$(this).html("show all");
 	}else{
