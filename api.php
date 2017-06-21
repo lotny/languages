@@ -37,8 +37,8 @@ echo json_encode($error);
 // Decode
 $apiresult = json_decode($apiresponse);
 
-$etymology = $apiresult->results[0]->lexicalEntries[0]->entries[0]->etymologies[0]; //we send this back!
-$audio = $apiresult->results[0]->lexicalEntries[0]->pronunciations[0]->audioFile; //we send this back!
+$etymology = $apiresult->results[0]->lexicalEntries[0]->entries[0]->etymologies[0];
+$audio = $apiresult->results[0]->lexicalEntries[0]->pronunciations[0]->audioFile;
 
 
 $response = new stdClass();
