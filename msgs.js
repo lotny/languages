@@ -1,5 +1,4 @@
 var messages = new Object;
-
 messages.changeHelp = function(topic){
 $("#help_content").html(pickHelp(topic));
 }
@@ -8,28 +7,28 @@ function pickHelp(topic){
 	var helpMessage = "";
 	//switch based on context
 	switch(topic){
-	case("languages"):
+	case("LANGUAGES"):
 	helpMessage = "<p>The square buttons let you pick languages to be displayed in the table.</p>";
 	break;
-	case("filter"):
+	case("FILTER"):
 	helpMessage = "<p>The filter lets you search for words that are already in the table. To filter words in a particular column, type its name before a colon. E.g., \"noun:fox\".</p>";
 	break;
-	case("edit mode"):
+	case("EDIT_MODE"):
 	helpMessage = "<p>Edit mode lets you modify and add data.<br>Saving changes requires a login and a password.</p>";
 	break;
-	case("sql mode"):
+	case("SEARCH_MODE"):
 	helpMessage = "<p>Search mode will let you find a word in all available languages.<br>This mode has not yet been implemented.</p>";
 	break;
-	case("compare mode"):
+	case("COMPARE_MODE"):
 	helpMessage = "<p>Compare mode displays similar words present in all chosen languages.<br>In case of errors, try to pick fewer languages.</p>";
 	break;
-	case("table"):
+	case("TABLE"):
 	helpMessage = "<p>The table displays the result of the query. In edit mode, you can double-click cells of the table to edit them.</p>";
 	break;
-	case("changed"):
+	case("CHANGED"):
 	helpMessage = "The selected cell is changed. It will be saved when you press the <b>save changes</b> button. Click on this cell to change its status.";
 	break;
-	case("cancelled"):
+	case("CANCELLED"):
 	helpMessage = "The selected cell is changed but is not active. It will not be saved when you press the <b>save changes</b> button. Click on this cell to change its status.";
 	break;
 	default:

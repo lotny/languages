@@ -1,5 +1,5 @@
 //this will handle displaying additional info
-var detailsWindow = new Object();
+var detailsWindow = function(){
 
 
 detailsWindow.clear = function(){
@@ -27,7 +27,6 @@ $("#details").append(div);
 var div = document.createElement("div");
 div.id = "detailsEtymology";
 $("#details").append(div);
-
 
 var div = document.createElement("div");
 div.id = "detailsClose";
@@ -111,3 +110,5 @@ $.getJSON('details.php', { 'userquery': q }, function (e) {
 
 $("#detailsHeader").html(word+ " (" + context[columnId][2] + ")" + " [" + Id + "]");
 }
+
+};
