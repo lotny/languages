@@ -3,7 +3,26 @@
  */
 var Messages = (function () {
 
+
+    function error(code) {
+
+        switch (mode) {
+            case "LANGUAGE_NOT_SUPPORTED":
+                show("this language is not supported", "error");
+                break;
+            case "CONNECTION_FAILED":
+                show("could not connect to the database", "error");
+                break;
+
+            default:
+                show(code, "error");
+                break;
+
+        }
+    }
+
     //refactor - get rid of ids? create messages in a cleaner way
+    //refactor - add the ability to use {0} inline, messages should handle arrays nad replace values accordingly
     function show(text, type, number) { //info/error/warning/tip?
         var n = (number == null ? "" : number);
         m += 1;
@@ -11,9 +30,9 @@ var Messages = (function () {
         var message = "<p id='" + m + "'style='display:none'>" + text + n + "</p>";
         $('#messages').append(message);
         $('#' + m).attr("class", type);
-        $('#' + m).fadeIn(500); //replace with CSS animation
+        $('#' + m).fadeIn(500); //replace with CSS animation, append messages only once!
         setTimeout(kill('#' + m), 10000);
-        $('#' + m).on('click', function(e){
+        $('#' + m).on('click', function (e) {
             e.stopPropagation();
             e.target.remove();
         })
