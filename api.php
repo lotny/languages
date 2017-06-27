@@ -6,11 +6,16 @@ include_once('../config.inc.php');
 $languageId = $userquery['languageId'];
 $wordId = $userquery['wordId'];
 
+$response = new stdClass();
+$response -> etymology = "";
+$response -> audio = "";
+$response -> word = $wordId;
+$response -> error = "";
+
 if ($languageId != "en")
 {
-    $error = new stdClass();
-    $error -> ERROR = "NOT_FOUND";
-    echo json_encode($error);
+    $response -> error = "LANGUAGE_NOT_SUPPORTED";
+    echo json_encode($response);
 return;
 }
 
@@ -39,11 +44,9 @@ $apiresult = json_decode($apiresponse);
 $etymology = $apiresult->results[0]->lexicalEntries[0]->entries[0]->etymologies[0];
 $audio = $apiresult->results[0]->lexicalEntries[0]->pronunciations[0]->audioFile;
 
-
-$response = new stdClass();
 $response -> etymology = $etymology;
 $response -> audio = $audio;
-$response -> word = $wordId;
+
 
 echo json_encode($response);
 }
