@@ -73,9 +73,9 @@ $languages = array_map("matchLanguage", $languages);
 //$context = new Context();
 
 $response = new stdClass();
-$response -> error = null;
+$response -> error = "";
 $response -> context = $languages;
-$response -> table = null;
+$response -> table = [];
 
 
 //$response -> context = $languages;
@@ -145,13 +145,16 @@ $query = substr($query, 0, -4) ;//remove last AND
 return $query;
 }
 
-
-
 }
 
 
 
 $userquery = buildQuery();
+$json = connect();
+echo json_encode($json);
+
+function connect(){
+global $servername,$readername,$readerpass,$database,$response,$userquery;
 
 if(function_exists('mysql_connect'))
     {
@@ -161,51 +164,51 @@ if(function_exists('mysql_connect'))
     $result = mysql_query($userquery);
 
     if(!$result){
-        $response -> error = "CONNECTION FAIL";
-        echo json_encode($response); 
-        die;
+        $response -> error = "CONNECTION_FAILED";
+        return $response;
     }
 
     if(mysql_num_rows($result) > 0){
         while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
         $rows[] = $row;}
-        
         $response -> table = $rows;
-        echo json_encode($response);
         mysql_free_result($result);
-    }else{
-        $response -> error = "EMPTY RESULT";
-        echo json_encode($response); 
         mysql_close($conn);
+        return $response;
+    }else{
+        $response -> error = "EMPTY_RESULT";
+        mysql_close($conn);
+        return $response;
     }
 }else{
         #mysqli
 		$conn = new mysqli($servername, $readername, $readerpass, $database) or die("unable to connect");
 		if ($conn->connect_error) {
-			$response -> error = "CONNECTION FAIL";
-			echo json_encode($response); 
-			die;
+			$response -> error = "CONNECTION_FAILED";
+            return $response;
 			}
 		mysqli_set_charset($conn,"utf8");
 		$result = $conn->query($userquery);
 		if(!$result){
-			$response -> error = "INVALID QUERY " . $userquery; //sensitive data
-            echo json_encode($response);
-            die;
+			$response -> error = "INVALID_QUERY " . $userquery; //sensitive data
+            $conn->close();
+            return $response;
 		}
 		if($result->num_rows >0){
 		while ($row = mysqli_fetch_assoc($result)) {
                $rows[] = $row; //this is encoded as an object
                }
         $response -> table = $rows;
-        echo json_encode($response);
+        $conn->close();
+        return $response;
 
         }else{
-        $response -> error = "INVALID SYNTAX " . $userquery; //sensitive data
-        echo json_encode($response);
+        $response -> error = "INVALID_SYNTAX " . $userquery; //sensitive data
         $conn->close();
+        return $response;
         }
 
 }
-        
+}
+
 ?>
