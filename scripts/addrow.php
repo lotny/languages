@@ -1,9 +1,8 @@
 <?php header('Content-Type: text/html; charset=utf-8');
 //this script updates relevant tables and columns in database
 include_once('../../config.inc.php');
-$addrow = "INSERT INTO word (TypeId,Comment) VALUES (1,'')";
+$addrow = "INSERT INTO word (TypeId,Comment,CreatedOn) VALUES (1,'',CURRENT_TIMESTAMP)";
 $userquery = "SELECT Id FROM word ORDER BY id DESC LIMIT 1";
-$servername = "localhost";
 
 
 if(function_exists('mysql_connect')){
