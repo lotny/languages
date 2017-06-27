@@ -41,10 +41,17 @@ margin: 0px;
 padding: 2px;
 border-radius: 2px;
 min-width: 24px;
+transition-duration: 0.3s;
 }
-.btn_mode_controls{
+
+
+
+button.btn_mode_controls {
 background-color: #517a8b;
 }
+
+
+
 #help_content{
 text-align: left;
 width: 500px;
@@ -56,7 +63,6 @@ width: 500px;
 }
 #controls{
 display: inline;
-width:100%;
 }
 #filter{
 width: 100px;
@@ -85,7 +91,7 @@ border-radius: 4px;
 padding: 8px; 
 color: white;
 background-color: #5e5e5e;
-
+transition-duration: 0.3s;
 }
 
 
@@ -107,6 +113,7 @@ max-width: 400px;
 background-color: #96BAB7;
 border-left: 8px solid #377F6D;
 }
+
 .error{
 border-radius: 4px;
 padding: 4px; 
@@ -115,6 +122,18 @@ max-width: 400px;
 background-color: #FADEB5;
 border-left: 8px solid #EE8C6C;
 }
+
+.tip{
+border-radius: 4px;
+padding: 4px; 
+color: #FFFFFF;
+max-width: 400px;
+background-color:  #7ea4b4;
+border-left: 8px solid #517a8b;
+}
+
+
+
 .input{
 font-family: Verdana, Geneva, sans-serif;
 padding:1px;
@@ -167,6 +186,7 @@ text-decoration: none;
 display: inline-block;
 font-size: 14px;
 border-radius: 2px;
+
 }
 #controls button{
 background-color: #333750;
@@ -198,13 +218,21 @@ width:120px;
 width: 86px;
 height: 86px;
 background-color: #C8CBD0;
+/*transition-duration: 0.3s;*/
 }
 .btn_language:hover{
 background-color:#C8CBD0;
 }
+
+.missing{
+background-color: #DDDDDD;
+
+}
+
 .selected{
 color:#FFFFFF;
 background-color:#726C78;
+
 }
 .selected:hover{
 background-color:#726C78;

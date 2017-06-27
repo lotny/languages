@@ -6,7 +6,6 @@
 <meta name=viewport content='width=700'>
 <meta name="viewport" content="width=device-width, initial-scale=1"><!--important for mobile version-->
 <meta name="mobile-web-app-capable" content="yes">
-<script src="jquery-3.1.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="default.css">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" sizes="192x192" href="icon.png">
@@ -29,65 +28,71 @@ table td {word-wrap:break-word;}
 </style>
 </head>
 <div id="frame">
-<div id="help" align="center">
-<div id="help_content"></div>
-</div>
-<div id="top" align="center">
-<div id="modes">
-
+    <div id="help" align="center">
+    <div id="help_content"></div>
+    </div>
 <button id="btn_help">?</button>
-<div id="mode_search" >
 
-<p><button class="btn_mode" title="lets you pick languages and edit tables" id="btn_edit" onclick="switchModes('edit')">edit mode</button><button class="btn_mode" onclick="switchModes('compare')">compare mode</button></p>
-<input type="text" id="userquery" placeholder="Search in all tables">
-</input><button class ="btn_mode_controls" id="btn_query" onclick="executeQuery()" >search</button>
+<div id="top" align="center">
+    <div id="modes">
+    
 
-</div>
-<div id="mode_edit">
-<p><button class="btn_mode" id="btn_sql" onclick="switchModes('sql')">search mode</button><button class="btn_mode" id="btn_m_compare" onclick="switchModes('compare')">compare mode</button><button class="btn_mode" id="btn_m_edit" onclick="switchModes('edit')">edit mode</button></p>
+    <p>
+    <button class="btn_mode" id="btn_m_search">search mode</button>
+    <button class="btn_mode" id="btn_m_compare">compare mode</button>
+    <button class="btn_mode" id="btn_m_edit" >edit mode</button>
+    </p>
+
 <!-- I could allow reordering columns here.... -->
-<button id = "btn_en" class="btn_language" >English</button>
-<button id = "btn_de" class="btn_language" >German</button>
-<button id = "btn_nl" class="btn_language" >Dutch</button>
-<button id = "btn_se" class="btn_language" >Swedish</button>
-<button id = "btn_fr" class="btn_language" >French</button>
-<button id = "btn_es" class="btn_language" >Spanish</button>
-<button id = "btn_it" class="btn_language" >Italian</button>
-<button id = "btn_la" class="btn_language" >Latin</button>
-<button id = "btn_pl" class="btn_language" >Polish</button>
-<button id = "btn_cz" class="btn_language" >Czech</button>
-<button id = "btn_hr" class="btn_language" >Croatian</button>
-<button id = "btn_ru" class="btn_language" >Russian</button>
-<button id = "btn_kr" class="btn_language" >Korean</button>
-</p>
-<button class ="btn_mode_controls" id="btn_auto" onclick="autoQuery('edit')" >edit</button>
-
-<button class ="btn_mode_controls" id ="btn_compare" onclick="autoQuery('compare')">compare</button>
-</div><!--end of edit mode-->
-
+<div id="lng_buttons">
+    <button id = "btn_en" class="btn_language" >English</button>
+    <button id = "btn_de" class="btn_language" >German</button>
+    <button id = "btn_nl" class="btn_language" style="display:none">Dutch</button>
+    <button id = "btn_se" class="btn_language" style="display:none">Swedish</button>
+    <button id = "btn_fr" class="btn_language" >French</button>
+    <button id = "btn_es" class="btn_language" style="display:none">Spanish</button>
+    <button id = "btn_it" class="btn_language" style="display:none">Italian</button>
+    <button id = "btn_la" class="btn_language" style="display:none">Latin</button>
+    <button id = "btn_pl" class="btn_language" >Polish</button>
+    <button id = "btn_cz" class="btn_language" style="display:none">Czech</button>
+    <button id = "btn_hr" class="btn_language" >Croatian</button>
+    <button id = "btn_ru" class="btn_language" >Russian</button>
+    <button id = "btn_kr" class="btn_language" >Korean</button>
+</div>
+<div id="btn_mode_controls_pane">
+<input class ="btn_mode_controls" id="input_search" placeholder="search in selected languages" type="text"></input>
+<button class ="btn_mode_controls" id="btn_search" >search</button>
+<button class ="btn_mode_controls" id ="btn_compare" >compare</button>
+<button class ="btn_mode_controls" id="btn_edit" >edit</button>
+</div>
 
 </div> <!-- end of modes bar -->
 </div><!-- end of top div-->
-<div align="center" id="controls">
-<input type="text" id="filter" placeholder="filter..." value="" disabled></input>
-<button id="btn_filter" style="width:30px" onclick="filterInit()">go</button><button id="btn_change" >show changes</button><button id="btn_update" onclick="executeUpdate()">save changes</button><button id="btn_add" onclick="addRow()">add row</button>
 
+<div align="center" id="controls">
+    <input type="text" id="input_filter" placeholder="filter table" value="" ></input>
+    <button id="btn_filter" style="width:30px" >go</button><button id="btn_change" >show changes</button><button id="btn_update" >save changes</button><button id="btn_add" >add row</button>
 </div> <!-- end of control bar-->
 
 <div id="tableheader" align="center"></div>
-<div id="content" align="center"><p class="info">This web app lets you compare similar words from different languages. To start, pick some languages and click <b>compare</b></p>
-<p class="error">Note that some features, like editing cells, are blocked for guest users</p>
+<div id="content" align="center">
+
+    <p class="info">This web app lets you compare similar words from different languages. To start, pick some languages and click <b>compare</b></p>
+    <p class="error">Note that some features, like editing cells, are blocked for guest users</p>
 </div>
 </div> <!-- end of frame-->
 
 <div id="messages"></div>
-<div id="editBox" class="hidden"></div>
-<div id="details" class="hidden">
-</div>
+<div id="editBox"></div>
+<div id="details" style="display:none"></div>
 <script></script>
-<script src="update.js"></script>
-<script src="controls.js"></script>
-<script src="msgs.js"></script>
-<script src="details.js"></script>
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/eventemitter2.js"></script>
+<script src="js/controls.js"></script>
+<script src="js/update.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/table.js"></script>
+<script src="js/messages.js"></script>
+<script src="js/details.js"></script>
 </body>
 </html>
