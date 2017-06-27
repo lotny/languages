@@ -12,6 +12,6 @@ You can see the demo at:
 
 ## Stack
 
-    - JavaScript with [jquery](jquery.com) and [https://github.com/asyncly/EventEmitter2](eventemitter2) libraries
-    - PHP for backed (communicating with database and APIs)
-    - MySQL database
+ - JavaScript with [jquery](jquery.com) and [https://github.com/asyncly/EventEmitter2](eventemitter2) libraries
+ - PHP for backed (communicating with database and APIs)
+ - MySQL database
