@@ -21,41 +21,39 @@ var Table = (function () {
     function filterInit() {
         console.log("filterInit");
         var filter = $("#input_filter").val();
-if (filter){
+        if (filter) {
 
-        filterAll(filter);
-}else
-{
-    $("#table tbody tr").show();
-}
-adjustColumns();
-}
+            filterAll(filter);
+        } else {
+            $("#table tbody tr").show();
+        }
+        adjustColumns();
+    }
     function filterAll(filter) {
 
-            var table = document.getElementById('table');
-            var rowLength = table.rows.length;
-            for (var i = 0; i < rowLength; i += 1) {
-                var matches = 0;
-                var row = table.rows[i];
-                var cellLength = row.cells.length;
-                for (var y = 0; y < cellLength; y += 1) {
-                    var cell = row.cells[y];
-                    if (cell.innerHTML != "") {
-                        if (cell.innerHTML.toLowerCase().indexOf(filter) >= 0) { //contains phrase
-                            matches += 1;
-                        }
+        var table = document.getElementById('table');
+        var rowLength = table.rows.length;
+        for (var i = 0; i < rowLength; i += 1) {
+            var matches = 0;
+            var row = table.rows[i];
+            var cellLength = row.cells.length;
+            for (var y = 0; y < cellLength; y += 1) {
+                var cell = row.cells[y];
+                if (cell.innerHTML != "") {
+                    if (cell.innerHTML.toLowerCase().indexOf(filter) >= 0) { //contains phrase
+                        matches += 1;
                     }
                 }
-                if (matches == 0) {
-                    row.style.display = "none";
-                }
             }
-            adjustColumns();
+            if (matches == 0) {
+                row.style.display = "none";
+            }
         }
+        adjustColumns();
+    }
 
 
     function updateContext(columns) {
-        console.log("ASD");
         Context.mode = userQuery.mode;
         Context.columns = columns;
         //var idColumn = new Column();
@@ -69,24 +67,23 @@ adjustColumns();
     function sendQuery() {
         var response;
         console.log(userQuery);
-        Messages.show("Fetching data ", "info");
+        Messages.show("fetching data...", "info");
         $.getJSON('load.php', { 'userquery': userQuery }, function () {
-            console.info("Fetching data");
-        }
-
-        )
+            console.info("fetching data...");
+        })
+            //refactor - add promise?
             .done(function (response) {
                 if (response != null) {
                     console.log(response);
                     build(response.table);
                     updateContext(response.context);
                 } else {
-                    Messages.show("There was an error", "error");
+                    Messages.error("there was an error");
 
                 }
             })
             .fail(function () {
-                Messages.show("Connection failure. <br> Try again later", "error");
+                Messages.error("CONNECTION_FAILED");
             });
     };
 
@@ -118,7 +115,7 @@ adjustColumns();
         }
         $('#table tbody').append(tableRows);
         adjustColumns();
-        Messages.show("Records found: ", "info", table.length);
+        Messages.show("table loaded, records found: ", "info", table.length);
 
         EV.emit("table-built", userQuery.mode);
     }
