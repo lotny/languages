@@ -31,10 +31,11 @@ table td {word-wrap:break-word;}
     <div id="help" align="center">
     <div id="help_content"></div>
     </div>
+<button id="btn_help">?</button>
 
 <div id="top" align="center">
     <div id="modes">
-    <button id="btn_help">?</button>
+    
 
     <p>
     <button class="btn_mode" id="btn_m_search">search mode</button>
@@ -46,34 +47,36 @@ table td {word-wrap:break-word;}
 <div id="lng_buttons">
     <button id = "btn_en" class="btn_language" >English</button>
     <button id = "btn_de" class="btn_language" >German</button>
-    <button id = "btn_nl" class="btn_language" >Dutch</button>
-    <button id = "btn_se" class="btn_language" >Swedish</button>
+    <button id = "btn_nl" class="btn_language" style="display:none">Dutch</button>
+    <button id = "btn_se" class="btn_language" style="display:none">Swedish</button>
     <button id = "btn_fr" class="btn_language" >French</button>
-    <button id = "btn_es" class="btn_language" >Spanish</button>
-    <button id = "btn_it" class="btn_language" >Italian</button>
-    <button id = "btn_la" class="btn_language" >Latin</button>
+    <button id = "btn_es" class="btn_language" style="display:none">Spanish</button>
+    <button id = "btn_it" class="btn_language" style="display:none">Italian</button>
+    <button id = "btn_la" class="btn_language" style="display:none">Latin</button>
     <button id = "btn_pl" class="btn_language" >Polish</button>
-    <button id = "btn_cz" class="btn_language" >Czech</button>
+    <button id = "btn_cz" class="btn_language" style="display:none">Czech</button>
     <button id = "btn_hr" class="btn_language" >Croatian</button>
     <button id = "btn_ru" class="btn_language" >Russian</button>
     <button id = "btn_kr" class="btn_language" >Korean</button>
 </div>
-
-<input type="text"></input><button class ="btn_mode_controls" id="btn_search" >search</button>
+<div id="btn_mode_controls_pane">
+<input class ="btn_mode_controls" id="input_search" placeholder="search in selected languages" type="text"></input>
+<button class ="btn_mode_controls" id="btn_search" >search</button>
 <button class ="btn_mode_controls" id ="btn_compare" >compare</button>
 <button class ="btn_mode_controls" id="btn_edit" >edit</button>
-
+</div>
 
 </div> <!-- end of modes bar -->
 </div><!-- end of top div-->
 
 <div align="center" id="controls">
-    <input type="text" id="filter" placeholder="filter..." value="" disabled></input>
+    <input type="text" id="input_filter" placeholder="filter table" value="" ></input>
     <button id="btn_filter" style="width:30px" >go</button><button id="btn_change" >show changes</button><button id="btn_update" >save changes</button><button id="btn_add" >add row</button>
 </div> <!-- end of control bar-->
 
 <div id="tableheader" align="center"></div>
 <div id="content" align="center">
+
     <p class="info">This web app lets you compare similar words from different languages. To start, pick some languages and click <b>compare</b></p>
     <p class="error">Note that some features, like editing cells, are blocked for guest users</p>
 </div>
@@ -81,13 +84,15 @@ table td {word-wrap:break-word;}
 
 <div id="messages"></div>
 <div id="editBox"></div>
-<div id="details"></div>
+<div id="details" style="display:none"></div>
 <script></script>
-<script src="jquery-3.1.0.min.js"></script>
-<script src="update.js"></script>
-<script src="controls.js"></script>
-<script src="ui.js"></script>
-<script src="msgs.js"></script>
-<script src="details.js"></script>
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/eventemitter2.js"></script>
+<script src="js/controls.js"></script>
+<script src="js/update.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/table.js"></script>
+<script src="js/messages.js"></script>
+<script src="js/details.js"></script>
 </body>
 </html>

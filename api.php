@@ -1,6 +1,5 @@
 <?php header('Content-Type: text/html; charset=utf-8');
-//this script will handle mysql or mysqli depending on whether the server supports it
-//error_reporting(E_ERROR); //stops displaying warnings/errors, I can create my own errors and pass them with json
+//error_reporting(E_ERROR); //stops displaying warnings/errors
 $userquery = $_GET['userquery'];
 include_once('../config.inc.php');
 
@@ -44,6 +43,7 @@ $audio = $apiresult->results[0]->lexicalEntries[0]->pronunciations[0]->audioFile
 $response = new stdClass();
 $response -> etymology = $etymology;
 $response -> audio = $audio;
+$response -> word = $wordId;
 
 echo json_encode($response);
 }
